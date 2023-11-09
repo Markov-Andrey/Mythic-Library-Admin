@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\MoonShine\Resources\ExperienceResource;
+use App\MoonShine\Resources\CharactersResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -24,8 +25,10 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('bookmark'),
             ])->translatable(),
 
-            MenuItem::make('Exp', new ExperienceResource())
+            MenuItem::make('Опыт', new ExperienceResource())
                 ->icon('heroicons.chevron-double-up'),
+            MenuItem::make('Персонажи', new CharactersResource())
+                ->icon('heroicons.user-circle'),
         ]);
     }
 }

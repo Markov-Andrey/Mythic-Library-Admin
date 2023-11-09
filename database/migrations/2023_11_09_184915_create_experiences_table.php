@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedInteger('points')->default(0);
             $table->unsignedInteger('level')->unique();
             $table->integer('mastery_bonus');
-            $table->timestamps();
         });
     }
 
