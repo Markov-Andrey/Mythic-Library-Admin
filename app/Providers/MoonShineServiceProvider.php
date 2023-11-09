@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\ExperienceResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -23,8 +24,8 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('bookmark'),
             ])->translatable(),
 
-            MenuItem::make('Documentation', 'https://laravel.com')
-                ->badge(fn() => 'Check'),
+            MenuItem::make('Exp', new ExperienceResource())
+                ->icon('heroicons.chevron-double-up'),
         ]);
     }
 }

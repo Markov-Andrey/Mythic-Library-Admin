@@ -45,7 +45,7 @@ return [
         'footer' => '',
     ],
     'locales' => [
-        'en',
+        //'en',
         'ru',
     ],
     'middlewares' => [],
