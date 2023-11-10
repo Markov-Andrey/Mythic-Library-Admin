@@ -12,6 +12,7 @@ class Character extends Model
     protected $fillable = [
         'name',
         'logo',
+        'class_id',
         'history',
         'experience',
         'level',
@@ -22,4 +23,13 @@ class Character extends Model
         'wisdom',
         'charisma',
     ];
+
+    /*
+     * RELATION
+     */
+    public function Classes()
+    {
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
+
 }

@@ -15,7 +15,8 @@ class ClassesResource extends Resource
 {
 	public static string $model = Classes::class;
 
-	public static string $title = 'Classes';
+	public static string $title = 'Классы';
+    public static string $subTitle = 'Полный список игровых классов';
 
 	public function fields(): array
 	{
