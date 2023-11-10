@@ -13,6 +13,8 @@ class Character extends Model
         'name',
         'logo',
         'history',
+        'experience',
+        'level',
         'strength',
         'dexterity',
         'constitution',

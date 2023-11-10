@@ -17,6 +17,7 @@ class ExperienceResource extends Resource
 
 	public static string $title = 'Опыт';
     public static string $subTitle = 'Таблица констант - Уровни/Опыт/Мастерство';
+    public static int $itemsPerPage = 100;
 
 	public function fields(): array
 	{

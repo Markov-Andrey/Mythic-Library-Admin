@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
+use App\MoonShine\Resources\ModifierResource;
+use App\MoonShine\Resources\ClassesResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -23,10 +25,16 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('moonshine::ui.resource.role_title', new MoonShineUserRoleResource())
                     ->translatable()
                     ->icon('bookmark'),
-            ])->translatable(),
+            ])->translatable()->icon('heroicons.cog-6-tooth'),
 
-            MenuItem::make('Опыт', new ExperienceResource())
-                ->icon('heroicons.chevron-double-up'),
+            MenuGroup::make('Константы', [
+                MenuItem::make('Опыт', new ExperienceResource())
+                    ->icon('heroicons.chevron-double-up'),
+                MenuItem::make('Модификатор', new ModifierResource())
+                    ->icon('heroicons.squares-2x2'),
+            ])->icon('heroicons.wrench-screwdriver') ,
+            MenuItem::make('Класс', new ClassesResource())
+                ->icon('heroicons.squares-2x2'),
             MenuItem::make('Персонажи', new CharactersResource())
                 ->icon('heroicons.user-circle'),
         ]);

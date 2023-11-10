@@ -13,4 +13,6 @@ class Experience extends Model
         'level',
         'mastery_bonus',
     ];
+
+    public $timestamps = false;
 }
