@@ -2,10 +2,16 @@
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\AlignmentResource;
+use App\MoonShine\Resources\CharacteristicsResource;
+use App\MoonShine\Resources\DimensionsResource;
 use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
+use App\MoonShine\Resources\GendersResource;
 use App\MoonShine\Resources\ModifierResource;
 use App\MoonShine\Resources\ClassesResource;
+use App\MoonShine\Resources\RaceResource;
+use App\MoonShine\Resources\SkillsResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -32,9 +38,23 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('heroicons.chevron-double-up'),
                 MenuItem::make('Модификатор', new ModifierResource())
                     ->icon('heroicons.squares-2x2'),
-            ])->icon('heroicons.wrench-screwdriver') ,
-            MenuItem::make('Класс', new ClassesResource())
-                ->icon('heroicons.squares-2x2'),
+                MenuItem::make('Размер существ', new DimensionsResource())
+                    ->icon('heroicons.arrow-up-circle'),
+            ])->icon('heroicons.wrench-screwdriver'),
+            MenuGroup::make('Параметры существ', [
+                MenuItem::make('Гендер', new GendersResource())
+                    ->icon('heroicons.users'),
+                MenuItem::make('Мировоззрение', new AlignmentResource())
+                    ->icon('heroicons.scale'),
+                MenuItem::make('Характеристики', new CharacteristicsResource())
+                    ->icon('heroicons.star'),
+                MenuItem::make('Навыки', new SkillsResource())
+                    ->icon('heroicons.book-open'),
+                MenuItem::make('Классы', new ClassesResource())
+                    ->icon('heroicons.squares-2x2'),
+                MenuItem::make('Расы', new RaceResource())
+                    ->icon('heroicons.user-circle'),
+            ])->icon('heroicons.chart-bar'),
             MenuItem::make('Персонажи', new CharactersResource())
                 ->icon('heroicons.user-circle'),
         ]);

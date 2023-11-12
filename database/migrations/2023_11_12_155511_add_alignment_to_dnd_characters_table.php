@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('dnd_characters', function (Blueprint $table) {
-            $table->unsignedInteger('experience')->default(0)->after('history');
-            $table->renameColumn('history', 'description')->nullable();
+            $table->unsignedBigInteger('alignments_id')->after('race_id')->nullable();
+            $table->foreign('alignments_id')->references('id')->on('dnd_alignments');
         });
     }
 
@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('dnd_characters', function (Blueprint $table) {
-            $table->renameColumn('description', 'history')->nullable();
-            $table->dropColumn('experience');
+            $table->dropForeign(['alignments_id']);
+            $table->dropColumn('alignments_id');
         });
     }
 };

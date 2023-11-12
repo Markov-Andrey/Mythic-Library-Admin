@@ -15,7 +15,6 @@ class Character extends Model
         'class_id',
         'history',
         'experience',
-        'level',
         'strength',
         'dexterity',
         'constitution',
@@ -30,6 +29,18 @@ class Character extends Model
     public function Classes()
     {
         return $this->belongsTo(Classes::class, 'class_id');
+    }
+    public function Genders()
+    {
+        return $this->belongsTo(Genders::class, 'gender_id');
+    }
+    public function Races()
+    {
+        return $this->belongsTo(Race::class, 'race_id');
+    }
+    public function Alignment()
+    {
+        return $this->belongsTo(Alignment::class, 'alignments_id');
     }
 
 }
