@@ -53,5 +53,9 @@ class Character extends Model
     {
         return $this->hasMany(CharactersExperience::class, 'character_id');
     }
+    public function CharacterSkills()
+    {
+        return $this->hasMany(CharactersSkill::class, 'character_id');
+    }
 
 }

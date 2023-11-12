@@ -26,4 +26,8 @@ class Skills extends Model
     {
         return $this->belongsTo(Characteristics::class, 'characteristics_id');
     }
+    public function charactersSkills()
+    {
+        return $this->hasMany(CharactersSkill::class, 'skill_id');
+    }
 }

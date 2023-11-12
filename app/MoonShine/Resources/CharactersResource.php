@@ -3,14 +3,18 @@
 namespace App\MoonShine\Resources;
 
 use App\Models\Character;
+use App\Models\CharactersExperience;
+use App\Models\Experience;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Divider;
 use MoonShine\Decorations\Flex;
 use MoonShine\Decorations\Heading;
 use MoonShine\Fields\BelongsTo;
+use MoonShine\Fields\HasMany;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Image;
+use MoonShine\Fields\NoInput;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Textarea;
@@ -27,6 +31,24 @@ class CharactersResource extends Resource
     public function fields(): array
     {
         return [
+            Block::make([
+                Heading::make('ОПЫТ/УРОВЕНЬ'),
+                Flex::make([
+                    NoInput::make('Уровень', 'level', function () {
+                        $id = $this->item->id;
+                        $exp = CharactersExperience::where('character_id', $id)->sum('quantity');
+                        $level = Experience::where('points', '<=', $exp)->orderByDesc('points')->first();
+                        return $level->level;
+                    }),
+                    NoInput::make('Опыт', 'total_exp', function () {
+                        $id = $this->item->id;
+                        return CharactersExperience::where('character_id', $id)->sum('quantity');
+                    }),
+                ]),
+            ]),
+
+            Divider::make(),
+
             Block::make([
                 ID::make()->sortable(),
                 Heading::make('ОСНОВНАЯ ИНФОРМАЦИЯ'),
@@ -49,13 +71,13 @@ class CharactersResource extends Resource
                 Heading::make('ЛИЧНОСТЬ'),
                 Flex::make([
                     BelongsTo::make('Гендер', 'genders', 'title'),
-                    BelongsTo::make('Мировоззрение', 'alignment', 'title'),
+                    BelongsTo::make('Мировоззрение', 'alignment', 'title')->hideOnIndex(),
                 ]),
                 Flex::make([
-                    Textarea::make('Внешний вид', 'appearance'),
-                    Textarea::make('Предыстория', 'description'),
+                    Textarea::make('Внешний вид', 'appearance')->hideOnIndex(),
+                    Textarea::make('Предыстория', 'description')->hideOnIndex(),
                 ]),
-                Text::make('Владение языками', 'languages'),
+                Text::make('Владение языками', 'languages')->hideOnIndex(),
             ]),
 
             Divider::make(),
@@ -63,10 +85,10 @@ class CharactersResource extends Resource
             Block::make([
                 Heading::make('ПЕРСОНАЛИЗАЦИЯ'),
                 Flex::make([
-                    Textarea::make('Черты характера', 'traits'),
-                    Textarea::make('Идеалы', 'ideals'),
-                    Textarea::make('Привязанности', 'attachment'),
-                    Textarea::make('Слабости', 'weakness'),
+                    Textarea::make('Черты характера', 'traits')->hideOnIndex(),
+                    Textarea::make('Идеалы', 'ideals')->hideOnIndex(),
+                    Textarea::make('Привязанности', 'attachment')->hideOnIndex(),
+                    Textarea::make('Слабости', 'weakness')->hideOnIndex(),
                 ]),
             ]),
 
@@ -82,7 +104,15 @@ class CharactersResource extends Resource
                     Number::make('Мудрость', 'wisdom'),
                     Number::make('Харизма', 'charisma'),
                 ])->justifyAlign('stretch')->itemsAlign('center'),
+                HasMany::make('Навыки', 'CharacterSkills')->fieldContainer(false)
+                    ->fields([
+                        BelongsTo::make('Навык','skill', 'title'),
+                    ])
+                    ->removable()
+                    ->hideOnIndex(),
             ]),
+
+            Divider::make(),
         ];
     }
 

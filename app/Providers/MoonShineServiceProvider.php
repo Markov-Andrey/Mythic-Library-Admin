@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\MoonShine\Resources\AlignmentResource;
 use App\MoonShine\Resources\CharacteristicsResource;
 use App\MoonShine\Resources\CharactersExperienceResource;
+use App\MoonShine\Resources\CharactersSkillResource;
 use App\MoonShine\Resources\DimensionsResource;
 use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
