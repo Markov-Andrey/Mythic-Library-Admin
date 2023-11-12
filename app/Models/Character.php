@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Character extends Model
@@ -13,8 +12,16 @@ class Character extends Model
         'name',
         'logo',
         'class_id',
-        'history',
-        'experience',
+
+        'description',
+        'appearance',
+        'languages',
+
+        'traits',
+        'ideals',
+        'attachment',
+        'weakness',
+
         'strength',
         'dexterity',
         'constitution',

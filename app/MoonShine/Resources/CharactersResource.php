@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use MoonShine\Decorations\Block;
 use MoonShine\Decorations\Divider;
 use MoonShine\Decorations\Flex;
+use MoonShine\Decorations\Heading;
 use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Image;
@@ -18,20 +19,19 @@ use MoonShine\Actions\FiltersAction;
 
 class CharactersResource extends Resource
 {
-	public static string $model = Character::class;
+    public static string $model = Character::class;
 
-	public static string $title = 'Персонажи';
+    public static string $title = 'Персонажи';
     public static string $subTitle = 'Список персонажей и их характеристик';
 
     public function fields(): array
     {
         return [
-            ID::make()->sortable(),
             Block::make([
+                ID::make()->sortable(),
+                Heading::make('ОСНОВНАЯ ИНФОРМАЦИЯ'),
                 Flex::make([
                     Text::make('Имя', 'name'),
-                    BelongsTo::make('Гендер', 'genders', 'title'),
-                    BelongsTo::make('Мировоззрение', 'alignment', 'title'),
                 ]),
                 Flex::make([
                     Image::make('Лого', 'logo')
@@ -42,22 +42,53 @@ class CharactersResource extends Resource
                     BelongsTo::make('Класс', 'classes', 'name'),
                 ]),
             ]),
-            Textarea::make('Предыстория', 'description'),
-            Flex::make([
-                Block::make([Number::make('Опыт', 'experience')]),
-                Block::make([Number::make('Сила', 'strength')]),
-                Block::make([Number::make('Ловкость', 'dexterity')]),
-                Block::make([Number::make('Телосложение', 'constitution')]),
-                Block::make([Number::make('Интеллект', 'intelligence')]),
-                Block::make([Number::make('Мудрость', 'wisdom')]),
-                Block::make([Number::make('Харизма', 'charisma')]),
-            ])->justifyAlign('stretch')->itemsAlign('stretch'),
+
+            Divider::make(),
+
+            Block::make([
+                Heading::make('ЛИЧНОСТЬ'),
+                Flex::make([
+                    BelongsTo::make('Гендер', 'genders', 'title'),
+                    BelongsTo::make('Мировоззрение', 'alignment', 'title'),
+                ]),
+                Flex::make([
+                    Textarea::make('Внешний вид', 'appearance'),
+                    Textarea::make('Предыстория', 'description'),
+                ]),
+                Text::make('Владение языками', 'languages'),
+            ]),
+
+            Divider::make(),
+
+            Block::make([
+                Heading::make('ПЕРСОНАЛИЗАЦИЯ'),
+                Flex::make([
+                    Textarea::make('Черты характера', 'traits'),
+                    Textarea::make('Идеалы', 'ideals'),
+                    Textarea::make('Привязанности', 'attachment'),
+                    Textarea::make('Слабости', 'weakness'),
+                ]),
+            ]),
+
+            Divider::make(),
+
+            Block::make([
+                Heading::make('БАЗОВЫЕ ХАРАКТЕРИСТИКИ'),
+                Flex::make([
+                    Number::make('Сила', 'strength'),
+                    Number::make('Ловкость', 'dexterity'),
+                    Number::make('Телосложение', 'constitution'),
+                    Number::make('Интеллект', 'intelligence'),
+                    Number::make('Мудрость', 'wisdom'),
+                    Number::make('Харизма', 'charisma'),
+                ])->justifyAlign('stretch')->itemsAlign('center'),
+            ]),
         ];
     }
 
-	public function rules(Model $item): array
-	{
-	    return [
+    public function rules(Model $item): array
+    {
+        return [
         ];
     }
 
