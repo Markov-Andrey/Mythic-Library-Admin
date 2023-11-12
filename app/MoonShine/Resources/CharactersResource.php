@@ -32,24 +32,6 @@ class CharactersResource extends Resource
     {
         return [
             Block::make([
-                Heading::make('ОПЫТ/УРОВЕНЬ'),
-                Flex::make([
-                    NoInput::make('Уровень', 'level', function () {
-                        $id = $this->item->id;
-                        $exp = CharactersExperience::where('character_id', $id)->sum('quantity');
-                        $level = Experience::where('points', '<=', $exp)->orderByDesc('points')->first();
-                        return $level->level;
-                    }),
-                    NoInput::make('Опыт', 'total_exp', function () {
-                        $id = $this->item->id;
-                        return CharactersExperience::where('character_id', $id)->sum('quantity');
-                    }),
-                ]),
-            ]),
-
-            Divider::make(),
-
-            Block::make([
                 ID::make()->sortable(),
                 Heading::make('ОСНОВНАЯ ИНФОРМАЦИЯ'),
                 Flex::make([
@@ -62,6 +44,24 @@ class CharactersResource extends Resource
                         ->allowedExtensions(['jpg', 'jpeg', 'gif', 'png']),
                     BelongsTo::make('Раса', 'races', 'title'),
                     BelongsTo::make('Класс', 'classes', 'name'),
+                ]),
+            ]),
+
+            Divider::make(),
+
+            Block::make([
+                Heading::make('ОПЫТ/УРОВЕНЬ'),
+                Flex::make([
+                    NoInput::make('Уровень', 'level', function () {
+                        $id = $this->item->id;
+                        $exp = CharactersExperience::where('character_id', $id)->sum('quantity');
+                        $level = Experience::where('points', '<=', $exp)->orderByDesc('points')->first();
+                        return $level->level;
+                    }),
+                    NoInput::make('Опыт', 'total_exp', function () {
+                        $id = $this->item->id;
+                        return CharactersExperience::where('character_id', $id)->sum('quantity');
+                    }),
                 ]),
             ]),
 
