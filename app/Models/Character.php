@@ -49,5 +49,9 @@ class Character extends Model
     {
         return $this->belongsTo(Alignment::class, 'alignments_id');
     }
+    public function CharacterExperience()
+    {
+        return $this->hasMany(CharactersExperience::class, 'character_id');
+    }
 
 }
