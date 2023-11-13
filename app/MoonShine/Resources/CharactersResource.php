@@ -4,6 +4,7 @@ namespace App\MoonShine\Resources;
 
 use App\Models\Character;
 use App\Models\CharactersExperience;
+use App\Models\CharactersHealth;
 use App\Models\Classes;
 use App\Models\Experience;
 use Illuminate\Database\Eloquent\Model;
@@ -53,7 +54,12 @@ class CharactersResource extends Resource
             Block::make([
                 Heading::make('ЗДОРОВЬЕ/ОПЫТ/УРОВЕНЬ'),
                 Flex::make([
-                    Number::make('Текущее здоровье', 'health_current'),
+                    NoInput::make('Текущее здоровье', 'health_current', function () {
+                        $id = $this->item->id;
+                        $healthMax = $this->item->health_max;
+                        $healthHistory = CharactersHealth::where('character_id', $id)->sum('quantity');
+                        return $healthMax - $healthHistory;
+                    }),
                     Number::make('Максимальное здороье', 'health_max'),
                 ]),
                 Flex::make([

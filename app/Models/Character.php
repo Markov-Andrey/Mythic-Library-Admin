@@ -22,7 +22,6 @@ class Character extends Model
         'attachment',
         'weakness',
 
-        'health_current',
         'health_max',
 
         'strength',
