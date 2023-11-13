@@ -4,6 +4,7 @@ namespace App\MoonShine\Resources;
 
 use App\Models\Character;
 use App\Models\CharactersExperience;
+use App\Models\Classes;
 use App\Models\Experience;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Decorations\Block;
@@ -50,7 +51,11 @@ class CharactersResource extends Resource
             Divider::make(),
 
             Block::make([
-                Heading::make('ОПЫТ/УРОВЕНЬ'),
+                Heading::make('ЗДОРОВЬЕ/ОПЫТ/УРОВЕНЬ'),
+                Flex::make([
+                    Number::make('Текущее здоровье', 'health_current'),
+                    Number::make('Максимальное здороье', 'health_max'),
+                ]),
                 Flex::make([
                     NoInput::make('Уровень', 'level', function () {
                         $id = $this->item->id;
