@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Classes;
 
 use MoonShine\Fields\Image;
+use MoonShine\Fields\Number;
 use MoonShine\Fields\Text;
+use MoonShine\Fields\Textarea;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
@@ -27,6 +29,11 @@ class ClassesResource extends Resource
                 ->disk('public')
                 ->allowedExtensions(['jpg', 'jpeg', 'gif', 'png', 'svg']),
             Text::make('Название', 'name')->sortable(),
+            Textarea::make('Описание', 'description'),
+            Number::make('Кость хитов', 'health_bonus'),
+            Number::make('Хиты на 1 уровне', 'basic_health'),
+            Number::make('Хиты на следующих уровнях', 'health_per_level'),
+            Number::make('Хиты на следующих уровнях (альтернатива)', 'alternative_health_per_level'),
         ];
 	}
 

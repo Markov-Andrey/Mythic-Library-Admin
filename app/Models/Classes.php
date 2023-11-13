@@ -13,7 +13,12 @@ class Classes extends Model
 
     protected $fillable = [
         'icon',
-        'name'
+        'name',
+        'description',
+        'health_bonus',
+        'basic_health',
+        'health_per_level',
+        'alternative_health_per_level'
     ];
 
     public $timestamps = false;
