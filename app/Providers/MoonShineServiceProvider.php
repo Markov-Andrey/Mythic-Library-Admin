@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\MoonShine\Resources\AlignmentResource;
 use App\MoonShine\Resources\CharacteristicsResource;
 use App\MoonShine\Resources\CharactersExperienceResource;
+use App\MoonShine\Resources\CharactersHealthResource;
 use App\MoonShine\Resources\CharactersSkillResource;
 use App\MoonShine\Resources\DimensionsResource;
 use App\MoonShine\Resources\ExperienceResource;
@@ -60,6 +61,8 @@ class MoonShineServiceProvider extends ServiceProvider
             MenuGroup::make('Взаимодействие с персонажами', [
                 MenuItem::make('Изменения опыта', new CharactersExperienceResource())
                     ->icon('heroicons.chart-bar'),
+                MenuItem::make('Изменение здоровья', new CharactersHealthResource())
+                    ->icon('heroicons.battery-100'),
             ])->icon('heroicons.chart-pie'),
             MenuItem::make('Персонажи', new CharactersResource())
                 ->icon('heroicons.user-circle'),

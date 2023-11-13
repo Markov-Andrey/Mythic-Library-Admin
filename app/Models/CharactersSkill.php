@@ -18,6 +18,9 @@ class CharactersSkill extends Model
 
     public $timestamps = false;
 
+    /*
+     * RELATION
+     */
     public function character()
     {
         return $this->belongsTo(Character::class, 'character_id');
