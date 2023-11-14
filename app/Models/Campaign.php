@@ -17,4 +17,8 @@ class Campaign extends Model
         'setting',
         'image'
     ];
+    public function Characters()
+    {
+        return $this->hasMany(Character::class, 'campaign_id');
+    }
 }

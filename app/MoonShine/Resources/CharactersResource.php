@@ -108,12 +108,12 @@ class CharactersResource extends Resource
             Block::make([
                 Heading::make('БАЗОВЫЕ ХАРАКТЕРИСТИКИ'),
                 Flex::make([
-                    Number::make('Сила', 'strength'),
-                    Number::make('Ловкость', 'dexterity'),
-                    Number::make('Телосложение', 'constitution'),
-                    Number::make('Интеллект', 'intelligence'),
-                    Number::make('Мудрость', 'wisdom'),
-                    Number::make('Харизма', 'charisma'),
+                    Number::make('Сила', 'strength')->hideOnIndex(),
+                    Number::make('Ловкость', 'dexterity')->hideOnIndex(),
+                    Number::make('Телосложение', 'constitution')->hideOnIndex(),
+                    Number::make('Интеллект', 'intelligence')->hideOnIndex(),
+                    Number::make('Мудрость', 'wisdom')->hideOnIndex(),
+                    Number::make('Харизма', 'charisma')->hideOnIndex(),
                 ])->justifyAlign('stretch')->itemsAlign('center'),
                 HasMany::make('Навыки', 'CharacterSkills')->fieldContainer(false)
                     ->fields([
@@ -121,6 +121,13 @@ class CharactersResource extends Resource
                     ])
                     ->removable()
                     ->hideOnIndex(),
+            ]),
+
+            Divider::make(),
+
+            Block::make([
+                Heading::make('ИГРА'),
+                BelongsTo::make('Кампания','Campaign', 'title'),
             ]),
 
             Divider::make(),

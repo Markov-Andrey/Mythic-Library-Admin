@@ -30,6 +30,8 @@ class Character extends Model
         'intelligence',
         'wisdom',
         'charisma',
+
+        'campaign_id',
     ];
 
     /*
@@ -58,6 +60,10 @@ class Character extends Model
     public function CharacterSkills()
     {
         return $this->hasMany(CharactersSkill::class, 'character_id');
+    }
+    public function Campaign()
+    {
+        return $this->belongsTo(Campaign::class, 'campaign_id');
     }
 
 }
