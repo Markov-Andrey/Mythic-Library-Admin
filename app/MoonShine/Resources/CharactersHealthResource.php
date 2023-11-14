@@ -16,15 +16,15 @@ class CharactersHealthResource extends Resource
 {
 	public static string $model = CharactersHealth::class;
 
-	public static string $title = 'Полученный урон';
-    public static string $subTitle = 'Таблица получения урона персонажами';
+	public static string $title = 'Изменение здоровья';
+    public static string $subTitle = 'Таблица урона и лечения персонажа';
 
 	public function fields(): array
 	{
 		return [
 		    ID::make()->sortable(),
             BelongsTo::make('Персонаж', 'Characters', 'name'),
-            Number::make('Количество', 'quantity'),
+            Number::make('Количество', 'quantity')->min(-999999)->max(999999),
             Text::make('Причина', 'reason')
         ];
 	}

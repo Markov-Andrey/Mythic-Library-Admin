@@ -24,7 +24,7 @@ class CharactersExperienceResource extends Resource
 		return [
 		    ID::make()->sortable(),
             BelongsTo::make('Персонаж', 'Characters', 'name'),
-            Number::make('Количество', 'quantity'),
+            Number::make('Количество', 'quantity')->min(1)->max(999999),
             Text::make('Причина', 'reason')
         ];
 	}

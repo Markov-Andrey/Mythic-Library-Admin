@@ -58,7 +58,7 @@ class CharactersResource extends Resource
                         $id = $this->item->id;
                         $healthMax = $this->item->health_max;
                         $healthHistory = CharactersHealth::where('character_id', $id)->sum('quantity');
-                        return $healthMax - $healthHistory;
+                        return $healthMax + $healthHistory;
                     }),
                     Number::make('Максимальное здороье', 'health_max'),
                 ]),
