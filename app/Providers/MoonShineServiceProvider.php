@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\MoonShine\Resources\AlignmentResource;
+use App\MoonShine\Resources\CampaignResource;
 use App\MoonShine\Resources\CharacteristicsResource;
 use App\MoonShine\Resources\CharactersExperienceResource;
 use App\MoonShine\Resources\CharactersHealthResource;
@@ -58,14 +59,18 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('Расы', new RaceResource())
                     ->icon('heroicons.user-circle'),
             ])->icon('heroicons.chart-bar'),
-            MenuGroup::make('Взаимодействие с персонажами', [
+            MenuGroup::make('Персонажи и взаимодействие', [
+                MenuItem::make('Персонажи', new CharactersResource())
+                    ->icon('heroicons.identification'),
                 MenuItem::make('Изменения опыта', new CharactersExperienceResource())
                     ->icon('heroicons.chart-bar'),
                 MenuItem::make('Изменение здоровья', new CharactersHealthResource())
                     ->icon('heroicons.battery-100'),
             ])->icon('heroicons.chart-pie'),
-            MenuItem::make('Персонажи', new CharactersResource())
-                ->icon('heroicons.user-circle'),
+            MenuGroup::make('Кампания', [
+                MenuItem::make('Список кампаний', new CampaignResource())
+                    ->icon('heroicons.globe-americas'),
+            ])->icon('heroicons.document-text'),
         ]);
     }
 }
