@@ -42,7 +42,7 @@ class CharacterController extends Controller
      */
     public function getCharacterById($id)
     {
-        $character = Character::find($id);
+        $character = Character::CharacterInfo($id);
         if (!$character) {
             return response()->json(['error' => 'Character not found'], 404);
         }
