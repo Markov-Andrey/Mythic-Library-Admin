@@ -54,25 +54,15 @@ class CharactersResource extends Resource
             Block::make([
                 Heading::make('ЗДОРОВЬЕ/ОПЫТ/УРОВЕНЬ'),
                 Flex::make([
-                    NoInput::make('Текущее здоровье', 'health_current', function () {
-                        $id = $this->item->id;
-                        $healthMax = $this->item->health_max;
-                        $healthHistory = CharactersHealth::where('character_id', $id)->sum('quantity');
-                        return $healthMax + $healthHistory;
-                    }),
+                    Number::make('Текущее здоровье', 'health_current'),
                     Number::make('Максимальное здороье', 'health_max'),
                 ]),
                 Flex::make([
                     NoInput::make('Уровень', 'level', function () {
-                        $id = $this->item->id;
-                        $exp = CharactersExperience::where('character_id', $id)->sum('quantity');
-                        $level = Experience::where('points', '<=', $exp)->orderByDesc('points')->first();
-                        return $level->level;
+                        $exp = $this->item->exp;
+                        return Experience::Level($exp);
                     }),
-                    NoInput::make('Опыт', 'total_exp', function () {
-                        $id = $this->item->id;
-                        return CharactersExperience::where('character_id', $id)->sum('quantity');
-                    }),
+                    Number::make('Опыт', 'exp'),
                 ]),
             ]),
 

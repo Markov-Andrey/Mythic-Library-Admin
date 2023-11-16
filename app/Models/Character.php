@@ -23,7 +23,9 @@ class Character extends Model
         'attachment',
         'weakness',
 
+        'health_current',
         'health_max',
+        'exp',
 
         'strength',
         'dexterity',
@@ -109,6 +111,7 @@ class Character extends Model
             'weakness' => $query->weakness
         ];
         $character->health = (object)[
+            'health_current' => $query->health_current,
             'health_max' => $query->health_max,
         ];
         $character->basic_params = (object)[
@@ -120,7 +123,6 @@ class Character extends Model
             'charisma' => $query->charisma,
         ];
         $character->basic_modifier = (object)[];
-
         foreach ($character->basic_params as $key => $value) {
             $character->basic_modifier->$key = Modifier::Calculate($value);
         }
@@ -138,10 +140,17 @@ class Character extends Model
         }
         $character->skills_modifier = (object) $skillsArray;
 
-        $characterExperience = CharactersExperience::where('character_id', $id)->get();
+        $level = Experience::Level($query->exp);
+        $masteryBonus = Experience::MasteryBonus($query->exp);
+        $character->character_experience = (object)[
+            'exp' => $query->exp,
+            'level' => $level,
+            'master_bonus' => $masteryBonus,
+        ];
+
         $characterSkills = CharactersSkill::where('character_id', $id)->get();
-        $character->character_experience = $characterExperience;
         $character->character_skills = $characterSkills;
+
         $character->campaign = $query->campaign;
 
         return $character;

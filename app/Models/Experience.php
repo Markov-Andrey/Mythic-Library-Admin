@@ -15,4 +15,31 @@ class Experience extends Model
     ];
 
     public $timestamps = false;
+
+    public static function Level($exp)
+    {
+        if (!$exp) {
+            return 1;
+        }
+        $nearestRow = self::where('points', '<=', $exp)
+            ->orderBy('points', 'desc')
+            ->first();
+        if ($nearestRow) {
+            return $nearestRow->level;
+        }
+        return 1;
+    }
+    public static function MasteryBonus($exp)
+    {
+        if (!$exp) {
+            return 1;
+        }
+        $nearestRow = self::where('points', '<=', $exp)
+            ->orderBy('points', 'desc')
+            ->first();
+        if ($nearestRow) {
+            return $nearestRow->mastery_bonus;
+        }
+        return 0;
+    }
 }
