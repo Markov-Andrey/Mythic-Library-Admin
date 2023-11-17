@@ -15,7 +15,9 @@ class Dimensions extends Model
         'title',
         'size',
         'space',
-        'dice'
+        'dice',
+        'carrying',
+        'pushing'
     ];
 
     public $timestamps = false;

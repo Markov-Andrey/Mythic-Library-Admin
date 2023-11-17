@@ -26,6 +26,8 @@ class DimensionsResource extends Resource
             Text::make('Размер, текст', 'size')->sortable(),
             Text::make('Пространство, футы', 'space')->sortable(),
             Number::make('Дайс, кость хитов (монстры)', 'dice')->sortable(),
+            Number::make('Грузоподъемность за ед. силы, фунт', 'carrying')->sortable(),
+            Number::make('Толкание за ед. силы, фунт', 'pushing')->sortable(),
         ];
 	}
 

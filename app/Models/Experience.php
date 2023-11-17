@@ -29,6 +29,19 @@ class Experience extends Model
         }
         return 1;
     }
+    public static function ExpNexLevel($exp)
+    {
+        if (!$exp) {
+            return null;
+        }
+        $nextLevelRow = self::where('points', '>', $exp)
+            ->orderBy('points', 'asc')
+            ->first();
+        if ($nextLevelRow) {
+            return $nextLevelRow->points;
+        }
+        return null;
+    }
     public static function MasteryBonus($exp)
     {
         if (!$exp) {
