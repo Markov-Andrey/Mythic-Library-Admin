@@ -55,12 +55,18 @@ class CharactersResource extends Resource
                 Heading::make('ЗДОРОВЬЕ/ОПЫТ/УРОВЕНЬ'),
                 Flex::make([
                     Number::make('Текущее здоровье', 'health_current'),
-                    Number::make('Максимальное здороье', 'health_max'),
+                    Number::make('Максимальное здоровье', 'health_max'),
                 ]),
                 Flex::make([
                     NoInput::make('Уровень', 'level', function () {
-                        $exp = $this->item->exp;
-                        return Experience::Level($exp);
+                        $exp = 1;
+                        if ($this->item) {
+                            $exp = $this->item->exp;
+                        }
+                        if ($exp) {
+                            return Experience::Level($exp);
+                        };
+                        return $exp;
                     }),
                     Number::make('Опыт', 'exp'),
                 ]),

@@ -93,8 +93,8 @@ class Info extends Character
 
         $character->character_experience = (object)[
             'exp' => $query->exp,
-            'exp_next_level' => Experience::ExpNexLevel($query->exp),
             'level' => Experience::Level($query->exp),
+            'exp_next_level' => Experience::ExpNexLevel($query->exp),
             'master_bonus' => Experience::MasteryBonus($query->exp),
         ];
 

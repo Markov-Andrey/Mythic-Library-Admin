@@ -31,15 +31,14 @@ class Experience extends Model
     }
     public static function ExpNexLevel($exp)
     {
-        if (!$exp) {
-            return null;
-        }
-        $nextLevelRow = self::where('points', '>', $exp)
+        $level = self::Level($exp) + 1;
+        $nextLevelRow = self::where('level', '=', $level)
             ->orderBy('points', 'asc')
             ->first();
         if ($nextLevelRow) {
             return $nextLevelRow->points;
         }
+
         return null;
     }
     public static function MasteryBonus($exp)
