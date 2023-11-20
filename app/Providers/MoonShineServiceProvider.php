@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Item;
 use App\MoonShine\Resources\AlignmentResource;
+use App\MoonShine\Resources\BackpackResource;
 use App\MoonShine\Resources\CampaignResource;
 use App\MoonShine\Resources\CharacteristicsResource;
 use App\MoonShine\Resources\CharactersExperienceResource;
@@ -12,6 +14,7 @@ use App\MoonShine\Resources\DimensionsResource;
 use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
 use App\MoonShine\Resources\GendersResource;
+use App\MoonShine\Resources\ItemResource;
 use App\MoonShine\Resources\ModifierResource;
 use App\MoonShine\Resources\ClassesResource;
 use App\MoonShine\Resources\RaceResource;
@@ -67,6 +70,12 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('Изменение здоровья', new CharactersHealthResource())
                     ->icon('heroicons.battery-100'),
             ])->icon('heroicons.chart-pie'),
+            MenuGroup::make('Предметы', [
+                MenuItem::make('Предметы', new ItemResource())
+                    ->icon('heroicons.square-3-stack-3d'),
+                MenuItem::make('Рюкзак', new BackpackResource())
+                    ->icon('heroicons.briefcase'),
+            ])->icon('heroicons.archive-box'),
             MenuGroup::make('Кампания', [
                 MenuItem::make('Список кампаний', new CampaignResource())
                     ->icon('heroicons.globe-americas'),

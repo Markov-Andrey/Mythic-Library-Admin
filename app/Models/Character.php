@@ -69,6 +69,10 @@ class Character extends Model
     {
         return $this->belongsTo(Campaign::class, 'campaign_id');
     }
+    public function backpack()
+    {
+        return $this->hasMany(Backpack::class, 'character_id');
+    }
 
     /*
      * FUNCTIONS
