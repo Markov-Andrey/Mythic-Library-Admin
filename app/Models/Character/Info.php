@@ -107,8 +107,14 @@ class Info extends Character
             'pushing' => $size->pushing * $character->params->strength,
         ];
 
-        $characterSkills = CharactersSkill::where('character_id', $id)->get();
-        $character->character_skills = $characterSkills;
+        $character->armor_class = (object)[
+            'no_armor' => 10 + $character->basic_modifier->dexterity,
+        ];
+
+        $characterSkills = CharactersSkill::with('skill')->where('character_id', $id)->get();
+        $character->skills = collect($dndSkills)->pluck('code')->mapWithKeys(fn ($code) => [$code => 0]);
+        $skillCodeCounts = $characterSkills->pluck('skill.code')->countBy();
+        $character->skills = $character->skills->merge($skillCodeCounts)->all();
 
         $character->campaign = $query->campaign;
 

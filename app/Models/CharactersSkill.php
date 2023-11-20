@@ -29,4 +29,8 @@ class CharactersSkill extends Model
     {
         return $this->belongsTo(Skills::class, 'skill_id');
     }
+
+    /*
+     * FUNCTIONS
+     */
 }
