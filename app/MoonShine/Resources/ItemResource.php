@@ -32,7 +32,7 @@ class ItemResource extends Resource
             Text::make('Название', 'title')->sortable(),
             Textarea::make('Описание', 'description'),
             Text::make('Ценность, зм', 'value')->sortable(),
-            Text::make('Вес, фунты', 'value')->sortable(),
+            Text::make('Вес, фунты', 'weight')->sortable(),
         ];
 	}
 

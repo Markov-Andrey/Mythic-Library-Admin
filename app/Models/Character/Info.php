@@ -3,6 +3,7 @@
 
 namespace App\Models\Character;
 
+use App\Models\Backpack;
 use App\Models\Character;
 use App\Models\Characteristics;
 use App\Models\CharactersSkill;
@@ -115,6 +116,19 @@ class Info extends Character
         $character->skills = collect($dndSkills)->pluck('code')->mapWithKeys(fn ($code) => [$code => 0]);
         $skillCodeCounts = $characterSkills->pluck('skill.code')->countBy();
         $character->skills = $character->skills->merge($skillCodeCounts)->all();
+
+        $backpack = Backpack::with('item')->where('character_id', $id)->get();
+        $character->backpack = $backpack->map(function ($entry) {
+            return [
+                'item_id' => $entry->item->id,
+                'image' => $entry->item->image,
+                'title' => $entry->item->title,
+                'description' => $entry->item->description,
+                'value' => $entry->item->value,
+                'weight' => $entry->item->weight,
+                'quantity' => $entry->quantity,
+            ];
+        });
 
         $character->campaign = $query->campaign;
 
