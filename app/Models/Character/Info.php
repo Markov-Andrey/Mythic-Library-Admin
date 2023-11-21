@@ -104,8 +104,6 @@ class Info extends Character
             'speed' => $query->races->speed,
             'size' => $size->title,
             'space' => $size->space,
-            'carrying' => $size->carrying * $character->params->strength,
-            'pushing' => $size->pushing * $character->params->strength,
         ];
 
         $character->armor_class = (object)[
@@ -129,6 +127,16 @@ class Info extends Character
                 'quantity' => $entry->quantity,
             ];
         });
+
+        $totalWeight = 0;
+        foreach ($character->backpack as $item) {
+            $totalWeight += $item['quantity'] * $item['weight'];
+        }
+        $character->weight = (object)[
+            'backpack' => $totalWeight,
+            'carrying' => $size->carrying * $character->params->strength,
+            'pushing' => $size->pushing * $character->params->strength,
+        ];
 
         $character->campaign = $query->campaign;
 
