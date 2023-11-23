@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Character\Info;
+use App\Models\Character\ShortInfo;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
 
@@ -80,6 +81,10 @@ class Character extends Model
     public static function CharacterInfo($id): stdClass
     {
         return Info::Info($id);
+    }
+    public static function CharacterShortInfo(): array|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
+    {
+        return ShortInfo::Info();
     }
 
 }
