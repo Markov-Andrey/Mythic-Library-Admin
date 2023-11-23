@@ -26,6 +26,10 @@ class Campaign extends Model
     {
         return $this->hasMany(Character::class, 'campaign_id');
     }
+    public function CampaignNote()
+    {
+        return $this->hasMany(CampaignNote::class, 'campaign_id');
+    }
 
     /*
      * FUNCTIONS
