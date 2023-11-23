@@ -73,6 +73,138 @@
                 }
             }
         },
+        "/api/campaign-notes": {
+            "post": {
+                "tags": [
+                    "Campaign Notes"
+                ],
+                "summary": "Create a new campaign note",
+                "operationId": "storeCampaignNote",
+                "requestBody": {
+                    "description": "Campaign Note data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "campaign_id": {
+                                        "description": "ID of the campaign",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "title": {
+                                        "description": "Title of the note",
+                                        "type": "string",
+                                        "example": "My Campaign Note"
+                                    },
+                                    "tags": {
+                                        "description": "Tags for the note",
+                                        "type": "string",
+                                        "example": "tag1, tag2"
+                                    },
+                                    "description": {
+                                        "description": "Description of the note",
+                                        "type": "string",
+                                        "example": "This is a note about my campaign."
+                                    },
+                                    "personal_note": {
+                                        "description": "Indicates if the note is personal",
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/campaign-notes/{id}": {
+            "put": {
+                "tags": [
+                    "Campaign Notes"
+                ],
+                "summary": "Update a campaign note",
+                "operationId": "updateCampaignNote",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the campaign note",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Campaign note not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Campaign Notes"
+                ],
+                "summary": "Delete a campaign note",
+                "operationId": "destroyCampaignNote",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the campaign note",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Campaign note not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/character/{id}": {
             "get": {
                 "tags": [

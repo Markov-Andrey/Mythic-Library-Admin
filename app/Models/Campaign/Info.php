@@ -11,7 +11,9 @@ class Info
 {
     public static function Info($id)
     {
-        $campaign = Campaign::with('characters:id,campaign_id')->find($id);
+        $campaign = Campaign::with(['characters:id,campaign_id', 'CampaignNote' => function ($query) {
+            $query->orderByDesc('created_at');
+        }])->find($id);
 
         if ($campaign) {
             $charactersWithIds = $campaign->characters;
