@@ -123,9 +123,21 @@ class CharactersResource extends Resource
             ]),
             Divider::make(),
 
+            Heading::make('МАГИЯ'),
             HasMany::make('Магия', 'characterSpell')->fieldContainer(false)
                 ->fields([
                     BelongsTo::make('Магия','spell', 'title'),
+                ])
+                ->nullable()
+                ->removable()
+                ->hideOnIndex(),
+
+            Divider::make(),
+
+            Heading::make('РЮКЗАК'),
+            HasMany::make('Рюкзак', 'backpack')->fieldContainer(false)
+                ->fields([
+                    BelongsTo::make('Предметы','item', 'title'),
                 ])
                 ->nullable()
                 ->removable()

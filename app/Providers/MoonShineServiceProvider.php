@@ -79,8 +79,6 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('heroicons.square-3-stack-3d'),
                 MenuItem::make('Типы предметов', new ItemTypeResource())
                     ->icon('heroicons.briefcase'),
-                MenuItem::make('Рюкзак', new BackpackResource())
-                    ->icon('heroicons.briefcase'),
             ])->icon('heroicons.briefcase'),
 
             MenuGroup::make('Заклинания', [
