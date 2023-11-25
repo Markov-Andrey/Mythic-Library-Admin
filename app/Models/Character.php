@@ -76,6 +76,10 @@ class Character extends Model
     {
         return $this->hasMany(Backpack::class, 'character_id');
     }
+    public function characterSpell()
+    {
+        return $this->hasMany(CharactersSpell::class, 'character_id');
+    }
 
     /*
      * FUNCTIONS

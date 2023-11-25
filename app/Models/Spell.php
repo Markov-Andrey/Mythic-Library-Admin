@@ -17,4 +17,12 @@ class Spell extends Model
         'description',
         'level',
     ];
+
+    /*
+     * RELATION
+     */
+    public function charactersSkills()
+    {
+        return $this->hasMany(CharactersSpell::class, 'spell_id');
+    }
 }

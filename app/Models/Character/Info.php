@@ -7,6 +7,7 @@ use App\Models\Backpack;
 use App\Models\Character;
 use App\Models\Characteristics;
 use App\Models\CharactersSkill;
+use App\Models\CharactersSpell;
 use App\Models\Dimensions;
 use App\Models\Experience;
 use App\Models\Modifier;
@@ -24,6 +25,7 @@ class Info extends Character
             'Alignment:id,title',
             'CharacterExperience',
             'CharacterSkills',
+            'CharacterSpell',
             'Campaign'
         ])
             ->find($id);
@@ -118,6 +120,15 @@ class Info extends Character
         $skillCodeCounts = $characterSkills->pluck('skill.code')->countBy();
         $character->skills = $character->skills->merge($skillCodeCounts)->all();
 
+        $characterSpells = CharactersSpell::with('spell')->where('character_id', $id)->get();
+        $character->spells = $characterSpells->map(function ($characterSpell) {
+            return [
+                'title' => $characterSpell->spell->title,
+                'description' => $characterSpell->spell->description,
+                'image' => $characterSpell->spell->image,
+                'level' => $characterSpell->spell->level,
+            ];
+        })->toArray();
 
         $backpack = Backpack::with('item', 'item.types.itemType')->where('character_id', $id)->orderByDesc('created_at')->get();
         $character->backpack = $backpack->map(function ($entry) {

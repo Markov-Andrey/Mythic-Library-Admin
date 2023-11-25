@@ -117,15 +117,25 @@ class CharactersResource extends Resource
                     ->fields([
                         BelongsTo::make('Навык','skill', 'title'),
                     ])
+                    ->nullable()
                     ->removable()
                     ->hideOnIndex(),
             ]),
+            Divider::make(),
+
+            HasMany::make('Магия', 'characterSpell')->fieldContainer(false)
+                ->fields([
+                    BelongsTo::make('Магия','spell', 'title'),
+                ])
+                ->nullable()
+                ->removable()
+                ->hideOnIndex(),
 
             Divider::make(),
 
             Block::make([
                 Heading::make('ИГРА'),
-                BelongsTo::make('Кампания','Campaign', 'title'),
+                BelongsTo::make('Кампания','Campaign', 'title')->nullable(),
             ]),
 
             Divider::make(),
