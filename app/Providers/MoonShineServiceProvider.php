@@ -14,12 +14,12 @@ use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
 use App\MoonShine\Resources\GendersResource;
 use App\MoonShine\Resources\ItemResource;
-use App\MoonShine\Resources\ItemTypeItemResource;
 use App\MoonShine\Resources\ItemTypeResource;
 use App\MoonShine\Resources\ModifierResource;
 use App\MoonShine\Resources\ClassesResource;
 use App\MoonShine\Resources\RaceResource;
 use App\MoonShine\Resources\SkillsResource;
+use App\MoonShine\Resources\SpellResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -49,6 +49,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('Размер существ', new DimensionsResource())
                     ->icon('heroicons.arrow-up-circle'),
             ])->icon('heroicons.wrench-screwdriver'),
+
             MenuGroup::make('Параметры существ', [
                 MenuItem::make('Гендер', new GendersResource())
                     ->icon('heroicons.users'),
@@ -63,6 +64,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('Расы', new RaceResource())
                     ->icon('heroicons.user-circle'),
             ])->icon('heroicons.chart-bar'),
+
             MenuGroup::make('Персонажи и взаимодействие', [
                 MenuItem::make('Персонажи', new CharactersResource())
                     ->icon('heroicons.identification'),
@@ -71,6 +73,7 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('Изменение здоровья', new CharactersHealthResource())
                     ->icon('heroicons.battery-100'),
             ])->icon('heroicons.chart-pie'),
+
             MenuGroup::make('Предметы', [
                 MenuItem::make('Предметы', new ItemResource())
                     ->icon('heroicons.square-3-stack-3d'),
@@ -78,7 +81,13 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('heroicons.briefcase'),
                 MenuItem::make('Рюкзак', new BackpackResource())
                     ->icon('heroicons.briefcase'),
-            ])->icon('heroicons.archive-box'),
+            ])->icon('heroicons.briefcase'),
+
+            MenuGroup::make('Заклинания', [
+                MenuItem::make('Заклинания', new SpellResource())
+                    ->icon('heroicons.sparkles'),
+            ])->icon('heroicons.sparkles'),
+
             MenuGroup::make('Кампания', [
                 MenuItem::make('Список кампаний', new CampaignResource())
                     ->icon('heroicons.globe-americas'),
