@@ -7,6 +7,7 @@ use App\Models\Item;
 
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Number;
+use MoonShine\Fields\SwitchBoolean;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Textarea;
 use MoonShine\Resources\Resource;
@@ -30,9 +31,10 @@ class ItemResource extends Resource
                 ->removable()
                 ->allowedExtensions(['jpg', 'jpeg', 'gif', 'png']),
             Text::make('Название', 'title')->sortable(),
-            Textarea::make('Описание', 'description'),
+            Textarea::make('Описание', 'description')->hideOnIndex(),
             Text::make('Ценность, зм', 'value')->sortable(),
             Text::make('Вес, фунты', 'weight')->sortable(),
+            SwitchBoolean::make('Изучено', 'studied')->sortable(),
         ];
 	}
 

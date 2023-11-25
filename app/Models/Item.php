@@ -17,5 +17,6 @@ class Item extends Model
         'description',
         'value',
         'weight',
+        'studied',
     ];
 }
