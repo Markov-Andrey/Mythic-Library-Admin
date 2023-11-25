@@ -107,9 +107,11 @@ class Info extends Character
             'space' => $size->space,
         ];
 
-        $character->armor_class = (object)[
-            'no_armor' => 10 + $character->basic_modifier->dexterity,
-        ];
+        $character->armor_class = (object)[];
+        $character->armor_class->{'Без брони'} = 10 + $character->basic_modifier->dexterity;
+        if ($query->races->title == 'Людоящер') {
+            $character->armor_class->{'Природный доспех (Людоящер)'} = 13 + $character->basic_modifier->dexterity;
+        }
 
         $characterSkills = CharactersSkill::with('skill')->where('character_id', $id)->get();
         $character->skills = collect($dndSkills)->pluck('code')->mapWithKeys(fn ($code) => [$code => 0]);
@@ -117,8 +119,11 @@ class Info extends Character
         $character->skills = $character->skills->merge($skillCodeCounts)->all();
 
 
-        $backpack = Backpack::with('item')->where('character_id', $id)->orderByDesc('created_at')->get();
+        $backpack = Backpack::with('item', 'item.types.itemType')->where('character_id', $id)->orderByDesc('created_at')->get();
         $character->backpack = $backpack->map(function ($entry) {
+            $typesString = $entry->item->types->map(function ($type) {
+                return $type->itemType->name;
+            })->implode(', ');
             return [
                 'item_id' => $entry->item->id,
                 'image' => $entry->item->image,
@@ -128,6 +133,7 @@ class Info extends Character
                 'weight' => $entry->item->weight,
                 'quantity' => $entry->quantity,
                 'studied' => $entry->item->studied,
+                'types' => $typesString,
             ];
         });
 
@@ -136,7 +142,7 @@ class Info extends Character
             $totalWeight += $item['quantity'] * $item['weight'];
         }
         $character->weight = (object)[
-            'backpack' => $totalWeight,
+            'backpack' => round($totalWeight, 3),
             'carrying' => $size->carrying * $character->params->strength,
             'pushing' => $size->pushing * $character->params->strength,
         ];
