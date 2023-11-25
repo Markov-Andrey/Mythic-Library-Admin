@@ -18,6 +18,7 @@ use MoonShine\Fields\ID;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\NoInput;
 use MoonShine\Fields\Number;
+use MoonShine\Fields\SwitchBoolean;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Textarea;
 use MoonShine\Resources\Resource;
@@ -58,6 +59,7 @@ class CharactersResource extends Resource
                     Number::make('Максимальное здоровье', 'health_max'),
                 ]),
                 Flex::make([
+                    SwitchBoolean::make('Вдохновение', 'inspiration'),
                     NoInput::make('Уровень', 'level', function () {
                         $exp = 1;
                         if ($this->item) {

@@ -36,6 +36,7 @@ class Info extends Character
             'gender' => $query->genders->title,
             'race' => $query->races->title,
             'alignment' => $query->races->alignment,
+            'inspiration' => $query->inspiration,
         ];
         $character->class = (object)[
             'name' => $query->classes->name,

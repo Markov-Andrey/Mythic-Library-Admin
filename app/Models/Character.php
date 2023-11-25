@@ -36,6 +36,8 @@ class Character extends Model
         'wisdom',
         'charisma',
 
+        'inspiration',
+
         'campaign_id',
     ];
 
