@@ -129,9 +129,6 @@ class Info extends Character
                 'level' => $characterSpell->spell->level,
             ];
         })->toArray();
-        usort($character->spells, function ($a, $b) {
-            return $a['level'] - $b['level'];
-        });
 
         $backpack = Backpack::with('item', 'item.types.itemType')->where('character_id', $id)->orderByDesc('created_at')->get();
         $character->backpack = $backpack->map(function ($entry) {
