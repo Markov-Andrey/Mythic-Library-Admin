@@ -116,6 +116,7 @@ class Info extends Character
         $skillCodeCounts = $characterSkills->pluck('skill.code')->countBy();
         $character->skills = $character->skills->merge($skillCodeCounts)->all();
 
+
         $backpack = Backpack::with('item')->where('character_id', $id)->orderByDesc('created_at')->get();
         $character->backpack = $backpack->map(function ($entry) {
             return [
@@ -126,6 +127,7 @@ class Info extends Character
                 'value' => $entry->item->value,
                 'weight' => $entry->item->weight,
                 'quantity' => $entry->quantity,
+                'studied' => $entry->item->studied,
             ];
         });
 
