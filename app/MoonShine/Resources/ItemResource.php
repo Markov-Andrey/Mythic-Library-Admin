@@ -5,6 +5,9 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Item;
 
+use MoonShine\Fields\BelongsTo;
+use MoonShine\Fields\BelongsToMany;
+use MoonShine\Fields\HasMany;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\SwitchBoolean;
@@ -32,6 +35,12 @@ class ItemResource extends Resource
                 ->allowedExtensions(['jpg', 'jpeg', 'gif', 'png']),
             Text::make('Название', 'title')->sortable(),
             Textarea::make('Описание', 'description')->hideOnIndex(),
+            HasMany::make('Тип', 'types')->fieldContainer(false)
+                ->fields([
+                    BelongsTo::make('','itemType', 'name'),
+                ])
+                ->nullable()
+                ->removable(),
             Text::make('Ценность, зм', 'value')->sortable(),
             Text::make('Вес, фунты', 'weight')->sortable(),
             SwitchBoolean::make('Изучено', 'studied')->sortable(),

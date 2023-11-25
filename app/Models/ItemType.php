@@ -16,4 +16,12 @@ class ItemType extends Model
     ];
 
     public $timestamps = false;
+
+    /*
+     * RELATION
+     */
+    public function items()
+    {
+        return $this->hasMany(ItemTypeItem::class, 'item_type_id');
+    }
 }

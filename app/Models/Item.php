@@ -19,4 +19,12 @@ class Item extends Model
         'weight',
         'studied',
     ];
+
+    /*
+    * RELATION
+    */
+    public function types()
+    {
+        return $this->hasMany(ItemTypeItem::class, 'item_id');
+    }
 }

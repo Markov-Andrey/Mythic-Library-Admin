@@ -14,6 +14,7 @@ use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
 use App\MoonShine\Resources\GendersResource;
 use App\MoonShine\Resources\ItemResource;
+use App\MoonShine\Resources\ItemTypeItemResource;
 use App\MoonShine\Resources\ItemTypeResource;
 use App\MoonShine\Resources\ModifierResource;
 use App\MoonShine\Resources\ClassesResource;
