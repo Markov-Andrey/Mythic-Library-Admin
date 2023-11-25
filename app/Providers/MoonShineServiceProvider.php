@@ -14,6 +14,7 @@ use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
 use App\MoonShine\Resources\GendersResource;
 use App\MoonShine\Resources\ItemResource;
+use App\MoonShine\Resources\ItemTypeResource;
 use App\MoonShine\Resources\ModifierResource;
 use App\MoonShine\Resources\ClassesResource;
 use App\MoonShine\Resources\RaceResource;
@@ -72,6 +73,8 @@ class MoonShineServiceProvider extends ServiceProvider
             MenuGroup::make('Предметы', [
                 MenuItem::make('Предметы', new ItemResource())
                     ->icon('heroicons.square-3-stack-3d'),
+                MenuItem::make('Типы предметов', new ItemTypeResource())
+                    ->icon('heroicons.briefcase'),
                 MenuItem::make('Рюкзак', new BackpackResource())
                     ->icon('heroicons.briefcase'),
             ])->icon('heroicons.archive-box'),

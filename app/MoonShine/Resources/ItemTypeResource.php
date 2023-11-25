@@ -3,28 +3,25 @@
 namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Backpack;
+use App\Models\ItemType;
 
-use MoonShine\Fields\BelongsTo;
-use MoonShine\Fields\Number;
+use MoonShine\Fields\Text;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
 
-class BackpackResource extends Resource
+class ItemTypeResource extends Resource
 {
-	public static string $model = Backpack::class;
+	public static string $model = ItemType::class;
 
-	public static string $title = 'Рюкзак';
-    public static string $subTitle = 'Список предметов персонажей';
+    public static string $title = 'Типы предметов';
+    public static string $subTitle = 'Список доступных типов предметов';
 
 	public function fields(): array
 	{
 		return [
 		    ID::make()->sortable(),
-            BelongsTo::make('Персонаж', 'character_id', 'name')->searchable()->sortable(),
-            BelongsTo::make('Предмет', 'item_id', 'title')->searchable()->sortable(),
-            Number::make('Количество', 'quantity')
+            Text::make('Название', 'name')->sortable(),
         ];
 	}
 
