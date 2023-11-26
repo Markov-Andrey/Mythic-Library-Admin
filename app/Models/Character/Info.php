@@ -20,6 +20,7 @@ class Info extends Character
     {
         $query = Character::with([
             'Classes:id,name,icon,health_bonus,basic_health,health_per_level,alternative_health_per_level',
+            'Classes.savingThrows',
             'Genders:id,title',
             'Races',
             'Alignment:id,title',
@@ -27,8 +28,7 @@ class Info extends Character
             'CharacterSkills',
             'CharacterSpell',
             'Campaign'
-        ])
-            ->find($id);
+        ])->find($id);
 
         $character = new stdClass();
         $character->info = (object)[
@@ -94,6 +94,13 @@ class Info extends Character
             $skillsArray[$skill->code] += $modifier;
         }
         $character->skills_modifier = (object) $skillsArray;
+
+
+        $character->saving_throws = $query->classes->savingThrows
+            ->map(function ($savingThrow) {
+                return $savingThrow->characteristic->code;
+            })
+            ->all();
 
         $character->character_experience = (object)[
             'exp' => $query->exp,
