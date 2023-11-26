@@ -16,6 +16,8 @@ class Spell extends Model
         'title',
         'description',
         'level',
+        'level_requirement',
+        'class_id'
     ];
 
     /*
@@ -24,5 +26,9 @@ class Spell extends Model
     public function charactersSkills()
     {
         return $this->hasMany(CharactersSpell::class, 'spell_id');
+    }
+    public function class()
+    {
+        return $this->belongsTo(Classes::class, 'class_id');
     }
 }

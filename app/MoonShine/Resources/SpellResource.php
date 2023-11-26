@@ -5,6 +5,7 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Spell;
 
+use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Text;
@@ -30,7 +31,9 @@ class SpellResource extends Resource
                 ->removable()
                 ->allowedExtensions(['jpg', 'jpeg', 'gif', 'png']),
             Text::make('Название', 'title')->sortable(),
-            Number::make('Уровень', 'level'),
+            Number::make('Уровень заклинания', 'level')->sortable(),
+            Number::make('Требование уровня', 'level_requirement')->sortable(),
+            BelongsTo::make('Класс', 'class', 'name')->searchable()->sortable()->nullable(),
             Textarea::make('Описание', 'description')->hideOnIndex(),
         ];
 	}
