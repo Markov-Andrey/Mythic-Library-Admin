@@ -138,6 +138,7 @@ class CharactersResource extends Resource
             HasMany::make('Рюкзак', 'backpack')->fieldContainer(false)
                 ->fields([
                     BelongsTo::make('Предметы','item', 'title'),
+                    Number::make('Количество','quantity'),
                 ])
                 ->nullable()
                 ->removable()
