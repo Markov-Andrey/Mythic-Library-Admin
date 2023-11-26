@@ -22,4 +22,12 @@ class Classes extends Model
     ];
 
     public $timestamps = false;
+
+    /*
+     * RELATION
+     */
+    public function savingThrows()
+    {
+        return $this->hasMany(ClassesSavingThrows::class, 'class_id');
+    }
 }

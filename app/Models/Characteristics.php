@@ -17,4 +17,13 @@ class Characteristics extends Model
     ];
 
     public $timestamps = false;
+
+    /*
+    * RELATION
+    */
+    public function savingThrows()
+    {
+        return $this->hasMany(ClassesSavingThrows::class, 'characteristic_id');
+    }
+
 }
