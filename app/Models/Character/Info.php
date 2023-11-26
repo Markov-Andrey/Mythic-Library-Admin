@@ -125,6 +125,7 @@ class Info extends Character
             return [
                 'title' => $characterSpell->spell->title,
                 'description' => $characterSpell->spell->description,
+                'properties' => $characterSpell->spell->properties,
                 'image' => $characterSpell->spell->image,
                 'level' => $characterSpell->spell->level,
             ];

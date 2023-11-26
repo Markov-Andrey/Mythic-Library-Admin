@@ -7,6 +7,7 @@ use App\Models\Spell;
 
 use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\Image;
+use MoonShine\Fields\Json;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Textarea;
@@ -35,6 +36,12 @@ class SpellResource extends Resource
             Number::make('Требование уровня', 'level_requirement')->sortable(),
             BelongsTo::make('Класс', 'class', 'name')->searchable()->sortable()->nullable(),
             Textarea::make('Описание', 'description')->hideOnIndex(),
+            Json::make('Свойства', 'properties')
+                ->fields([
+                    Text::make('Название', 'title'),
+                    Text::make('Описание', 'value')
+                ])
+                ->hideOnIndex(),
         ];
 	}
 

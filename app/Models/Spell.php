@@ -17,7 +17,11 @@ class Spell extends Model
         'description',
         'level',
         'level_requirement',
-        'class_id'
+        'class_id',
+    ];
+
+    protected $casts = [
+        'properties' => 'collection',
     ];
 
     /*
