@@ -8,6 +8,7 @@ use App\Models\Character;
 use App\Models\Characteristics;
 use App\Models\CharactersSkill;
 use App\Models\CharactersSpell;
+use App\Models\ClassesSpellSlot;
 use App\Models\Dimensions;
 use App\Models\Experience;
 use App\Models\Modifier;
@@ -95,6 +96,25 @@ class Info extends Character
         }
         $character->skills_modifier = (object) $skillsArray;
 
+        $level = Experience::Level($query->exp);
+        $id_class= $query->classes->id;
+        $spellSlots = ClassesSpellSlot::where('class_id', $id_class)
+            ->where('character_level', $level)
+            ->first();
+        $character->spell_slots = (object)[
+            'known_conspiracies' => $spellSlots->known_conspiracies,
+            'known_spells' => $spellSlots->known_spells,
+            'spell_slots_level_1' => $spellSlots->spell_slots_level_1,
+            'spell_slots_level_2' => $spellSlots->spell_slots_level_2,
+            'spell_slots_level_3' => $spellSlots->spell_slots_level_3,
+            'spell_slots_level_4' => $spellSlots->spell_slots_level_4,
+            'spell_slots_level_5' => $spellSlots->spell_slots_level_5,
+            'spell_slots_level_6' => $spellSlots->spell_slots_level_6,
+            'spell_slots_level_7' => $spellSlots->spell_slots_level_7,
+            'spell_slots_level_8' => $spellSlots->spell_slots_level_8,
+            'spell_slots_level_9' => $spellSlots->spell_slots_level_9,
+        ];
+        // TODO персонажу добавь отслеживание текущих ячеек заклинаний
 
         $character->saving_throws = $query->classes->savingThrows
             ->map(function ($savingThrow) {
@@ -104,7 +124,7 @@ class Info extends Character
 
         $character->character_experience = (object)[
             'exp' => $query->exp,
-            'level' => Experience::Level($query->exp),
+            'level' => $level,
             'exp_next_level' => Experience::ExpNexLevel($query->exp),
             'master_bonus' => Experience::MasteryBonus($query->exp),
         ];
