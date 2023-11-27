@@ -30,4 +30,9 @@ class Classes extends Model
     {
         return $this->hasMany(ClassesSavingThrows::class, 'class_id');
     }
+    public function classesSpellSlots()
+    {
+        return $this->hasMany(ClassesSpellSlot::class, 'class_id');
+    }
+
 }

@@ -9,6 +9,7 @@ use App\MoonShine\Resources\CampaignResource;
 use App\MoonShine\Resources\CharacteristicsResource;
 use App\MoonShine\Resources\CharactersExperienceResource;
 use App\MoonShine\Resources\CharactersHealthResource;
+use App\MoonShine\Resources\ClassesSpellSlotResource;
 use App\MoonShine\Resources\DimensionsResource;
 use App\MoonShine\Resources\ExperienceResource;
 use App\MoonShine\Resources\CharactersResource;
@@ -59,11 +60,16 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('heroicons.star'),
                 MenuItem::make('Навыки', new SkillsResource())
                     ->icon('heroicons.book-open'),
-                MenuItem::make('Классы', new ClassesResource())
-                    ->icon('heroicons.squares-2x2'),
                 MenuItem::make('Расы', new RaceResource())
                     ->icon('heroicons.user-circle'),
             ])->icon('heroicons.chart-bar'),
+
+            MenuGroup::make('Игровые классы', [
+                MenuItem::make('Классы', new ClassesResource())
+                    ->icon('heroicons.squares-2x2'),
+                MenuItem::make('Слоты заклинаний', new ClassesSpellSlotResource())
+                    ->icon('heroicons.squares-2x2'),
+            ])->icon('heroicons.chart-pie'),
 
             MenuGroup::make('Персонажи и взаимодействие', [
                 MenuItem::make('Персонажи', new CharactersResource())
