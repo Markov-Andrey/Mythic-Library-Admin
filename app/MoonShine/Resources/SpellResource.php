@@ -41,6 +41,7 @@ class SpellResource extends Resource
                     Text::make('Название', 'title'),
                     Text::make('Описание', 'value')
                 ])
+                ->removable()
                 ->hideOnIndex(),
         ];
 	}
