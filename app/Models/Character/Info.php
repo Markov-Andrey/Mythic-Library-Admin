@@ -102,17 +102,17 @@ class Info extends Character
             ->where('character_level', $level)
             ->first();
         $character->spell_slots = (object)[
-            'known_conspiracies' => $spellSlots->known_conspiracies,
-            'known_spells' => $spellSlots->known_spells,
-            'spell_slots_level_1' => $spellSlots->spell_slots_level_1,
-            'spell_slots_level_2' => $spellSlots->spell_slots_level_2,
-            'spell_slots_level_3' => $spellSlots->spell_slots_level_3,
-            'spell_slots_level_4' => $spellSlots->spell_slots_level_4,
-            'spell_slots_level_5' => $spellSlots->spell_slots_level_5,
-            'spell_slots_level_6' => $spellSlots->spell_slots_level_6,
-            'spell_slots_level_7' => $spellSlots->spell_slots_level_7,
-            'spell_slots_level_8' => $spellSlots->spell_slots_level_8,
-            'spell_slots_level_9' => $spellSlots->spell_slots_level_9,
+            'known_conspiracies' => $spellSlots->known_conspiracies ?? null,
+            'known_spells' => $spellSlots->known_spells ?? null,
+            'spell_slots_level_1' => $spellSlots->spell_slots_level_1 ?? null,
+            'spell_slots_level_2' => $spellSlots->spell_slots_level_2 ?? null,
+            'spell_slots_level_3' => $spellSlots->spell_slots_level_3 ?? null,
+            'spell_slots_level_4' => $spellSlots->spell_slots_level_4 ?? null,
+            'spell_slots_level_5' => $spellSlots->spell_slots_level_5 ?? null,
+            'spell_slots_level_6' => $spellSlots->spell_slots_level_6 ?? null,
+            'spell_slots_level_7' => $spellSlots->spell_slots_level_7 ?? null,
+            'spell_slots_level_8' => $spellSlots->spell_slots_level_8 ?? null,
+            'spell_slots_level_9' => $spellSlots->spell_slots_level_9 ?? null,
         ];
         // TODO персонажу добавь отслеживание текущих ячеек заклинаний
 
