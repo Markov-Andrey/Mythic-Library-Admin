@@ -21,6 +21,7 @@ use App\MoonShine\Resources\ClassesResource;
 use App\MoonShine\Resources\RaceResource;
 use App\MoonShine\Resources\SkillsResource;
 use App\MoonShine\Resources\SpellResource;
+use App\MoonShine\Resources\UserResource;
 use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -40,6 +41,8 @@ class MoonShineServiceProvider extends ServiceProvider
                 MenuItem::make('moonshine::ui.resource.role_title', new MoonShineUserRoleResource())
                     ->translatable()
                     ->icon('bookmark'),
+                MenuItem::make('Пользователи', new UserResource())
+                    ->icon('users'),
             ])->translatable()->icon('heroicons.cog-6-tooth'),
 
             MenuGroup::make('Константы', [
