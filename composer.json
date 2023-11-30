@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "moonshine/moonshine": "^1.64",
+        "moonshine/quill": "^1.0",
         "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {

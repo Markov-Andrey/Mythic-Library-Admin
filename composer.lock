@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9c11fd0e0b859ef9b26e252901727d1",
+    "content-hash": "9143af42baf7fdc60873b97c0baae86a",
     "packages": [
         {
             "name": "brick/math",
@@ -2345,6 +2345,71 @@
                 }
             ],
             "time": "2023-10-19T15:30:42+00:00"
+        },
+        {
+            "name": "moonshine/quill",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moonshine-software/quill.git",
+                "reference": "9c3145ffe7091acd6464efc5c34a2537c141d7ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moonshine-software/quill/zipball/9c3145ffe7091acd6464efc5c34a2537c141d7ed",
+                "reference": "9c3145ffe7091acd6464efc5c34a2537c141d7ed",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": "^8.0|^8.1|^8.2"
+            },
+            "conflict": {
+                "moonshine/moonshine": "<1.52"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.8",
+                "mockery/mockery": "^1.4.4",
+                "orchestra/testbench": "^4.0|^5.0|^6.0|^7.0|^8.0",
+                "phpstan/phpstan": "^1.4.7",
+                "phpunit/phpunit": "^9.5.8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MoonShine\\Quill\\Providers\\QuillServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MoonShine\\Quill\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danil Shutsky",
+                    "email": "info@cutcode.ru",
+                    "homepage": "https://cutcode.dev"
+                }
+            ],
+            "description": "Quill editor for MoonShine",
+            "homepage": "https://moonshine.cutcode.dev",
+            "keywords": [
+                "moonshine",
+                "quill"
+            ],
+            "support": {
+                "issues": "https://github.com/moonshine-software/quill/issues",
+                "source": "https://github.com/moonshine-software/quill"
+            },
+            "time": "2023-04-10T08:07:01+00:00"
         },
         {
             "name": "nesbot/carbon",

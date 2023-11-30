@@ -9,7 +9,7 @@ use MoonShine\Fields\BelongsTo;
 use MoonShine\Fields\Date;
 use MoonShine\Fields\SwitchBoolean;
 use MoonShine\Fields\Text;
-use MoonShine\Fields\Textarea;
+use MoonShine\Quill\Fields\Quill;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\ID;
 use MoonShine\Actions\FiltersAction;
@@ -28,7 +28,7 @@ class CampaignNoteResource extends Resource
             BelongsTo::make('Кампания', 'campaign_id', 'title'),
             Text::make('Название', 'title'),
             Text::make('Теги', 'tags'),
-            Textarea::make('Описание', 'description')->hideOnIndex(),
+            Quill::make('Описание', 'description')->hideOnIndex(),
             SwitchBoolean::make('Заметка мастера', 'personal_note'),
             Date::make('Дата создания', 'created_at')->withTime()
         ];
