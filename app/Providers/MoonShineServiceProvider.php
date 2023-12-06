@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\MoonShine\Resources\AlignmentResource;
-use App\MoonShine\Resources\BackpackResource;
 use App\MoonShine\Resources\CampaignNoteResource;
 use App\MoonShine\Resources\CampaignResource;
+use App\MoonShine\Resources\CharacterCharacteristicResource;
 use App\MoonShine\Resources\CharacteristicsResource;
 use App\MoonShine\Resources\CharactersExperienceResource;
 use App\MoonShine\Resources\CharactersHealthResource;
@@ -18,6 +18,7 @@ use App\MoonShine\Resources\ItemResource;
 use App\MoonShine\Resources\ItemTypeResource;
 use App\MoonShine\Resources\ModifierResource;
 use App\MoonShine\Resources\ClassesResource;
+use App\MoonShine\Resources\MonsterResource;
 use App\MoonShine\Resources\RaceResource;
 use App\MoonShine\Resources\SkillsResource;
 use App\MoonShine\Resources\SpellResource;
@@ -81,6 +82,11 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('heroicons.chart-bar'),
                 MenuItem::make('Изменение здоровья', new CharactersHealthResource())
                     ->icon('heroicons.battery-100'),
+            ])->icon('heroicons.chart-pie'),
+
+            MenuGroup::make('Бестиарий', [
+                MenuItem::make('Бестиарий', new MonsterResource())
+                    ->icon('heroicons.identification'),
             ])->icon('heroicons.chart-pie'),
 
             MenuGroup::make('Предметы', [
