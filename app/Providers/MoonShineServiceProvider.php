@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\CharactersResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
@@ -46,9 +47,13 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 ),
                 MenuItem::make(
                     static fn() => __('moonshine::ui.resource.role_title'),
-                    new MoonShineUserRoleResource()
+                    new MoonShineUserRoleResource(), 'heroicons.user-group'
                 ),
             ]),
+            MenuItem::make(
+                static fn() => 'Characters',
+                new CharactersResource(),
+            ),
 
             MenuItem::make('Documentation', 'https://moonshine-laravel.com/docs')
                 ->badge(fn() => 'Check')
