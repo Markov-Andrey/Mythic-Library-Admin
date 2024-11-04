@@ -61,6 +61,18 @@ return [
             'url' => env('APP_URL') . '/storage/avatars',
             'visibility' => 'public',
         ],
+        'sessions' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/sessions'),
+            'url' => env('APP_URL') . '/storage/sessions',
+            'visibility' => 'public',
+        ],
+        'items' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/items'),
+            'url' => env('APP_URL') . '/storage/items',
+            'visibility' => 'public',
+        ],
 
     ],
 

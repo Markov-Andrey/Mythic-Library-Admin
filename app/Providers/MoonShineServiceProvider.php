@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\MoonShine\Resources\CharactersResource;
+use App\MoonShine\Resources\InventoryResource;
+use App\MoonShine\Resources\ItemResource;
+use App\MoonShine\Resources\SessionsResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
-use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Resources\MoonShineUserResource;
@@ -50,10 +52,26 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     new MoonShineUserRoleResource(), 'heroicons.user-group'
                 ),
             ]),
-            MenuItem::make(
-                static fn() => 'Characters',
-                new CharactersResource(),
-            ),
+            MenuGroup::make('Game', [
+                MenuItem::make(
+                    static fn() => 'Sessions',
+                    new SessionsResource(),
+                ),
+                MenuItem::make(
+                    static fn() => 'Items',
+                    new ItemResource(),
+                ),
+            ]),
+            MenuGroup::make('Characters', [
+                MenuItem::make(
+                    static fn() => 'Characters',
+                    new CharactersResource(),
+                ),
+                MenuItem::make(
+                    static fn() => 'Inventory',
+                    new InventoryResource(),
+                ),
+            ]),
 
             MenuItem::make('Documentation', 'https://moonshine-laravel.com/docs')
                 ->badge(fn() => 'Check')
