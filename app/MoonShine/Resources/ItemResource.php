@@ -50,8 +50,6 @@ class ItemResource extends ModelResource
                 Number::make('Value', 'value')->step(0.01),
                 Json::make('Properties', 'properties')
                     ->keyValue(),
-                Json::make('Custom Attributes', 'custom_attributes')
-                    ->keyValue(),
                 Switcher::make('Hidden Properties', 'has_hidden_properties'),
             ]),
         ];

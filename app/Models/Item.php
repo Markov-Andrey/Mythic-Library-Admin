@@ -20,13 +20,11 @@ class Item extends Model
         'weight_per_unit',
         'value',
         'properties',
-        'custom_attributes',
         'has_hidden_properties',
     ];
 
     protected $casts = [
         'properties' => 'array',
-        'custom_attributes' => 'array',
     ];
 
     public function getWeightPerUnitAttribute($value)
