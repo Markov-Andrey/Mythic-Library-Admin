@@ -11,6 +11,7 @@ use MoonShine\Fields\Image;
 use MoonShine\Fields\Json;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Relationships\BelongsTo;
+use MoonShine\Fields\Relationships\HasMany;
 use MoonShine\Fields\Switcher;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
@@ -52,6 +53,8 @@ class CharactersResource extends ModelResource
                 Number::make('Experience', 'experience'),
                 Text::make('Info', 'info'),
                 Switcher::make('NPC', 'is_npc'),
+                HasMany::make('Abilities', 'abilities', resource: new CharacterAbilityResource())->hideOnAll()->showOnDetail(),
+                HasMany::make('Inventory', 'inventory', resource: new InventoryResource())->hideOnAll()->showOnDetail(),
             ]),
         ];
     }

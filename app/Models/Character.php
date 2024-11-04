@@ -37,4 +37,12 @@ class Character extends Model
     {
         return $this->belongsTo(Session::class, 'session_id');
     }
+    public function inventory(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Inventory::class, 'character_id');
+    }
+    public function abilities(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(CharacterAbility::class, 'character_id');
+    }
 }
