@@ -18,13 +18,11 @@ return new class extends Migration
             $table->json('attributes')->nullable(); // Дополнительные характеристики объекта
             $table->timestamps();
 
-            // Внешний ключ для связи с таблицей sessions
             $table->foreign('session_id')
                 ->references('id')
                 ->on('sessions')
                 ->onDelete('cascade');
 
-            // Внешний ключ для самоссылки
             $table->foreign('parent_id')
                 ->references('id')
                 ->on('locations')
