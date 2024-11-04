@@ -7,6 +7,7 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Inventory;
 
+use MoonShine\Fields\Json;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Resources\ModelResource;
@@ -36,6 +37,8 @@ class InventoryResource extends ModelResource
                 BelongsTo::make('Character', 'character', resource: new CharactersResource())->nullable(),
                 BelongsTo::make('Item', 'item', resource: new CharactersResource())->nullable(),
                 Number::make('Quantity', 'quantity')->default(1),
+                Json::make('Individual Properties', 'add_properties')
+                    ->keyValue(),
             ]),
         ];
     }

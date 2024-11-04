@@ -15,6 +15,11 @@ class Inventory extends Model
         'character_id',
         'item_id',
         'quantity',
+        'add_properties',
+    ];
+
+    protected $casts = [
+        'add_properties' => 'array',
     ];
 
     public function character()
