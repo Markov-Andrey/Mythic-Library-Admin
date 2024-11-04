@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\MoonShine\Resources\AbilityResource;
+use App\MoonShine\Resources\CharacterAbilityResource;
 use App\MoonShine\Resources\CharactersResource;
 use App\MoonShine\Resources\InventoryResource;
 use App\MoonShine\Resources\ItemResource;
@@ -66,6 +68,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                     static fn() => 'Items',
                     new ItemResource(),
                 ),
+                MenuItem::make(
+                    static fn() => 'Abilities',
+                    new AbilityResource(),
+                ),
             ]),
             MenuGroup::make('Characters', [
                 MenuItem::make(
@@ -75,6 +81,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 MenuItem::make(
                     static fn() => 'Inventory',
                     new InventoryResource(),
+                ),
+                MenuItem::make(
+                    static fn() => 'Ability',
+                    new CharacterAbilityResource(),
                 ),
             ]),
 

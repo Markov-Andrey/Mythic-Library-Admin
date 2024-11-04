@@ -5,26 +5,24 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Inventory;
+use App\Models\CharacterAbility;
 
 use MoonShine\Fields\Json;
-use MoonShine\Fields\Number;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Field;
 use MoonShine\Components\MoonShineComponent;
-use MoonShine\Resources\MoonShineUserResource;
 
 /**
- * @extends ModelResource<Inventory>
+ * @extends ModelResource<CharacterAbility>
  */
-class InventoryResource extends ModelResource
+class CharacterAbilityResource extends ModelResource
 {
-    protected string $model = Inventory::class;
+    protected string $model = CharacterAbility::class;
 
-    protected string $title = 'Inventories';
+    protected string $title = 'CharacterAbilities';
 
     /**
      * @return list<MoonShineComponent|Field>
@@ -35,8 +33,7 @@ class InventoryResource extends ModelResource
             Block::make([
                 ID::make()->sortable(),
                 BelongsTo::make('Character', 'character', resource: new CharactersResource())->nullable(),
-                BelongsTo::make('Item', 'item', resource: new ItemResource())->nullable(),
-                Number::make('Quantity', 'quantity')->default(1),
+                BelongsTo::make('Ability', 'ability', resource: new AbilityResource())->nullable(),
                 Json::make('Individual Properties', 'add_properties')
                     ->keyValue(),
             ]),
@@ -44,7 +41,7 @@ class InventoryResource extends ModelResource
     }
 
     /**
-     * @param Inventory $item
+     * @param CharacterAbility $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

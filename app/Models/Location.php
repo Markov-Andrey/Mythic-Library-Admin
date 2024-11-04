@@ -12,6 +12,7 @@ class Location extends Model
     protected $table = 'locations';
 
     protected $fillable = [
+        'images',
         'session_id',
         'parent_id',
         'name',
@@ -21,6 +22,7 @@ class Location extends Model
     ];
 
     protected $casts = [
+        'images' => 'array',
         'attributes' => 'array',
     ];
 

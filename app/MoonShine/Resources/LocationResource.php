@@ -7,6 +7,7 @@ namespace App\MoonShine\Resources;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Location;
 
+use MoonShine\Fields\Image;
 use MoonShine\Fields\Json;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
@@ -37,7 +38,11 @@ class LocationResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                BelongsTo::make('Session', 'session', resource: new SessionsResource())->nullable(),
+                Image::make('images')
+                    ->disk('locations')
+                    ->removable()
+                    ->multiple(),
+            BelongsTo::make('Session', 'session', resource: new SessionsResource())->nullable(),
                 BelongsTo::make('Parent', 'parent', resource: new SessionsResource())->nullable(),
                 Text::make('Name', 'name'),
                 Text::make('Type', 'type'),

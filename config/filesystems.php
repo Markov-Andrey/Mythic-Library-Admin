@@ -73,7 +73,18 @@ return [
             'url' => env('APP_URL') . '/storage/items',
             'visibility' => 'public',
         ],
-
+        'locations' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/locations'),
+            'url' => env('APP_URL') . '/storage/locations',
+            'visibility' => 'public',
+        ],
+        'abilities' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/abilities'),
+            'url' => env('APP_URL') . '/storage/abilities',
+            'visibility' => 'public',
+        ],
     ],
 
     /*
