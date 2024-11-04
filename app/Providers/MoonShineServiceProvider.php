@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\MoonShine\Resources\CharactersResource;
 use App\MoonShine\Resources\InventoryResource;
 use App\MoonShine\Resources\ItemResource;
+use App\MoonShine\Resources\LocationResource;
 use App\MoonShine\Resources\SessionsResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\Menu\MenuGroup;
@@ -56,6 +57,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 MenuItem::make(
                     static fn() => 'Sessions',
                     new SessionsResource(),
+                ),
+                MenuItem::make(
+                    static fn() => 'Locations',
+                    new LocationResource(),
                 ),
                 MenuItem::make(
                     static fn() => 'Items',
