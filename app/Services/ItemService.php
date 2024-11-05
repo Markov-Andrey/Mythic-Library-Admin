@@ -25,10 +25,23 @@ class ItemService
 
         return response()->json($item);
     }
-    public static function allItems($session_id): \Illuminate\Http\JsonResponse
+    public static function allItems($session_id, $request): \Illuminate\Http\JsonResponse
     {
-        $items = Item::where('session_id', $session_id)->get();
+        $types = $request->input('type');
+        $query = Item::where('session_id', $session_id);
+
+        if ($types) {
+            $typesArray = array_map('trim', explode(',', $types));
+            $query->whereIn('type', $typesArray);
+        }
+        $items = $query->get();
 
         return response()->json($items);
+    }
+    public static function types($session_id): \Illuminate\Http\JsonResponse
+    {
+        $types = Item::where('session_id', $session_id)->whereNotNull('type')->distinct()->pluck('type');
+
+        return response()->json($types);
     }
 }

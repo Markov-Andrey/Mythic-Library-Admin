@@ -23,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/sessions', [SessionController::class, '
 Route::middleware('auth:sanctum')->get('/session/{session_id}', [SessionController::class, 'getSession']);
 Route::middleware('auth:sanctum')->get('/locations/{session_id}', [LocationController::class, 'allLocations']);
 Route::middleware('auth:sanctum')->get('/location/{id}', [LocationController::class, 'location']);
-Route::middleware('auth:sanctum')->get('/items/{session_id}', [ItemController::class, 'allItems']);
+Route::middleware('auth:sanctum')->post('/items/{session_id}', [ItemController::class, 'allItems']);
 Route::middleware('auth:sanctum')->get('/item/{id}', [ItemController::class, 'item']);
+Route::middleware('auth:sanctum')->get('/items/{id}/types', [ItemController::class, 'types']);
