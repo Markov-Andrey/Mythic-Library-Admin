@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
+/**
+ * Игроки в сессии
+ */
 class SessionUser extends Pivot
 {
     use HasFactory;
