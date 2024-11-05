@@ -11,4 +11,8 @@ class LocationController extends Controller
     {
         return LocationService::allLocations($session_id);
     }
+    public function location($id)
+    {
+        return LocationService::location($id);
+    }
 }

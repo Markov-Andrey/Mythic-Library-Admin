@@ -6,6 +6,24 @@ use App\Models\Location;
 
 class LocationService
 {
+    public static function location($id): \Illuminate\Http\JsonResponse
+    {
+        $location = Location::where('id', $id)->first();
+
+        if (!$location) {
+            return response()->json(['error' => 'Location not found'], 404);
+        }
+
+        if (isset($location->images) && !empty($location->images)) {
+            $location->images = array_map(function ($image) {
+                return asset("storage/locations/{$image}");
+            }, $location->images);
+        } else {
+            $location->images = [];
+        }
+
+        return response()->json($location);
+    }
     public static function allLocations($session_id): \Illuminate\Http\JsonResponse
     {
         $locations = Location::where('session_id', $session_id)->get();

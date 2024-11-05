@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::middleware('auth:sanctum')->get('/sessions', [SessionController::class, 'getUserSessions']);
 Route::middleware('auth:sanctum')->get('/session/{session_id}', [SessionController::class, 'getSession']);
 Route::middleware('auth:sanctum')->get('/locations/{session_id}', [LocationController::class, 'allLocations']);
+Route::middleware('auth:sanctum')->get('/location/{id}', [LocationController::class, 'location']);
