@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'moonshine' => [
+            'driver' => 'sanctum',
+            'provider' => 'moonshine_users',
+        ],
     ],
 
     /*
@@ -60,6 +64,10 @@ return [
     */
 
     'providers' => [
+        'moonshine_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,

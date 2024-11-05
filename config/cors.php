@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['http://localhost:3000', 'http://mythic-library.test', 'http://mythic-library.com'],
 
     'allowed_origins_patterns' => [],
 
