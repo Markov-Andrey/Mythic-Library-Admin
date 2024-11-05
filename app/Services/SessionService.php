@@ -24,9 +24,9 @@ class SessionService
 
         return response()->json($sessions);
     }
-    public static function getSession($id): JsonResponse
+    public static function getSession($session_id): JsonResponse
     {
-        $session = Session::where('id', $id)->with('sessionUsers')->first();
+        $session = Session::where('id', $session_id)->with('sessionUsers')->first();
 
         if (!$session) {
             return response()->json(['error' => 'Session not found'], 404);

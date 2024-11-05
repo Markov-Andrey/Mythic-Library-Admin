@@ -38,4 +38,8 @@ class Location extends Model
     {
         return $this->belongsTo(Session::class, 'session_id');
     }
+    public function getPreviewUrlAttribute(): string
+    {
+        return asset("storage/locations/{$this->images}");
+    }
 }

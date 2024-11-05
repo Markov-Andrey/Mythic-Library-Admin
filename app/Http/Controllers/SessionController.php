@@ -9,11 +9,15 @@ class SessionController extends Controller
 {
     public function getUserSessions(): JsonResponse
     {
-        return SessionService::getUserSessions();
+        $response = SessionService::getUserSessions();
+
+        return response()->json($response);
     }
 
-    public function getSession($id): JsonResponse
+    public function getSession($session_id): JsonResponse
     {
-        return SessionService::getSession($id);
+        $response = SessionService::getSession($session_id);
+
+        return response()->json($response);
     }
 }
