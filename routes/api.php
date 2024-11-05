@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
-Route::middleware('auth:sanctum')->get('/sessions', [SessionController::class, 'getSessions']);
+Route::middleware('auth:sanctum')->get('/sessions', [SessionController::class, 'getUserSessions']);
+Route::middleware('auth:sanctum')->get('/session/{id}', [SessionController::class, 'getSession']);

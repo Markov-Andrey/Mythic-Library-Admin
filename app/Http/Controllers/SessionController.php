@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Session;
+use App\Services\SessionService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
-    public function getSessions(): JsonResponse
+    public function getUserSessions(): JsonResponse
     {
-        $user = Auth::user();
-        if (!$user) return response()->json(['error' => 'Unauthenticated'], 401);
-        $sessions = Session::where('user_id', $user->id)->get();
+        return SessionService::getUserSessions();
+    }
 
-        return response()->json($sessions);
+    public function getSession($id): JsonResponse
+    {
+        return SessionService::getSession($id);
     }
 }

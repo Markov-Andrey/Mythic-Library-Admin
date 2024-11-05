@@ -19,8 +19,16 @@ class Session extends Model
         'description',
     ];
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function sessionUsers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SessionUser::class);
+    }
+    public function getPreviewUrlAttribute(): string
+    {
+        return asset("storage/sessions/{$this->preview}");
     }
 }
