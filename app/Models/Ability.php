@@ -12,6 +12,7 @@ class Ability extends Model
     protected $table = 'abilities';
 
     protected $fillable = [
+        'session_id',
         'image',
         'name',
         'description',
@@ -22,4 +23,8 @@ class Ability extends Model
     protected $casts = [
         'parameters' => 'array',
     ];
+    public function session()
+    {
+        return $this->belongsTo(Session::class, 'session_id');
+    }
 }

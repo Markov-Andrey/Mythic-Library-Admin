@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LocationController;
@@ -26,3 +27,4 @@ Route::middleware('auth:sanctum')->get('/location/{id}', [LocationController::cl
 Route::middleware('auth:sanctum')->post('/items/{session_id}', [ItemController::class, 'allItems']);
 Route::middleware('auth:sanctum')->get('/item/{id}', [ItemController::class, 'item']);
 Route::middleware('auth:sanctum')->get('/items/{id}/types', [ItemController::class, 'types']);
+Route::middleware('auth:sanctum')->post('/abilities/{session_id}', [AbilityController::class, 'allAbilities']);

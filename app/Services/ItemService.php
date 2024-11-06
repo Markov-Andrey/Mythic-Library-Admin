@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Item;
-use App\Models\Location;
 
 class ItemService
 {

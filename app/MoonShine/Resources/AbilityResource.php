@@ -9,6 +9,7 @@ use App\Models\Ability;
 
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Json;
+use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Textarea;
 use MoonShine\Resources\ModelResource;
@@ -37,6 +38,7 @@ class AbilityResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
+                BelongsTo::make('Session', 'session', resource: new SessionsResource())->nullable(),
                 Image::make('image')
                     ->disk('abilities'),
                 Text::make('Name', 'name'),
