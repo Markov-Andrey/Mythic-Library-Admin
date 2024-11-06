@@ -27,8 +27,8 @@ class Ability extends Model
     {
         return $this->belongsTo(Session::class, 'session_id');
     }
-    public function getImageAttribute($value)
+    public function getFullImagePathAttribute()
     {
-        return $value ? asset("storage/abilities/{$value}") : null;
+        return $this->image ? asset("storage/abilities/{$this->image}") : null;
     }
 }

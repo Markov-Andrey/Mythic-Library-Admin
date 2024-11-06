@@ -24,6 +24,10 @@ class AbilityService
             $query->whereIn('type', $typesArray);
         }
         $items = $query->get();
+        $items = $items->map(function ($item) {
+            $item->image = $item->full_image_path;
+            return $item;
+        });
 
         return response()->json($items);
     }

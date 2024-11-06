@@ -47,8 +47,8 @@ class Item extends Model
     {
         return $this->belongsTo(Session::class, 'session_id');
     }
-    public function getImageAttribute($value)
+    public function getFullImagePathAttribute()
     {
-        return $value ? asset("storage/items/{$value}") : null;
+        return $this->image ? asset("storage/items/{$this->image}") : null;
     }
 }
