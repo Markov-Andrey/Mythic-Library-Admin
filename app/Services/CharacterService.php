@@ -2,16 +2,18 @@
 
 namespace App\Services;
 
-use App\Models\Ability;
 use App\Models\Character;
 
 class CharacterService
 {
     public static function character($id): \Illuminate\Http\JsonResponse
     {
-        $item = Character::find($id);
+        $item = Character::with([
+            'inventoryWithItems',
+            'abilitiesWithDetails',
+        ])->find($id);
         if (!$item) return response()->json(['error' => 'Location not found'], 404);
-        $item->image = !empty($item->image) ? asset("storage/abilities/{$item->image}") : null;
+        $item->avatar = !empty($item->avatar) ? asset("storage/avatars/{$item->avatar}") : null;
 
         return response()->json($item);
     }

@@ -47,4 +47,8 @@ class Item extends Model
     {
         return $this->belongsTo(Session::class, 'session_id');
     }
+    public function getImageAttribute($value)
+    {
+        return $value ? asset("storage/items/{$value}") : null;
+    }
 }

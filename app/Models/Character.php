@@ -45,4 +45,20 @@ class Character extends Model
     {
         return $this->hasMany(CharacterAbility::class, 'character_id');
     }
+    /**
+     * Связь с Inventory и Item, объединяя их данные.
+     */
+    public function inventoryWithItems()
+    {
+        return $this->hasManyThrough(Item::class, Inventory::class, 'character_id', 'id', 'id', 'item_id')
+            ->select('items.*', 'inventory.quantity', 'inventory.add_properties');
+    }
+    /**
+     * Связь с Ability через CharacterAbility, объединяя их данные.
+     */
+    public function abilitiesWithDetails()
+    {
+        return $this->hasManyThrough(Ability::class, CharacterAbility::class, 'character_id', 'id', 'id', 'ability_id')
+            ->select('abilities.*', 'character_abilities.add_properties');
+    }
 }

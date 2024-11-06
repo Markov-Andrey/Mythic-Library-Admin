@@ -30,3 +30,4 @@ Route::middleware('auth:sanctum')->get('/item/{id}', [ItemController::class, 'it
 Route::middleware('auth:sanctum')->get('/items/{id}/types', [ItemController::class, 'types']);
 Route::middleware('auth:sanctum')->post('/abilities/{session_id}', [AbilityController::class, 'allAbilities']);
 Route::middleware('auth:sanctum')->post('/characters/{session_id}', [CharacterController::class, 'allCharacters']);
+Route::middleware('auth:sanctum')->get('/character/{id}', [CharacterController::class, 'character']);
