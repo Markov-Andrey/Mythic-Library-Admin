@@ -10,6 +10,7 @@ use App\MoonShine\Resources\CharactersResource;
 use App\MoonShine\Resources\InventoryResource;
 use App\MoonShine\Resources\ItemResource;
 use App\MoonShine\Resources\LocationResource;
+use App\MoonShine\Resources\NoteResource;
 use App\MoonShine\Resources\SessionsResource;
 use App\MoonShine\Resources\SessionUserResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
@@ -76,6 +77,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 MenuItem::make(
                     static fn() => 'Abilities',
                     new AbilityResource(),
+                ),
+                MenuItem::make(
+                    static fn() => 'Notes',
+                    new NoteResource(),
                 ),
             ]),
             MenuGroup::make('Characters', [

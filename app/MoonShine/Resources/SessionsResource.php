@@ -39,7 +39,7 @@ class SessionsResource extends ModelResource
                 BelongsTo::make('Admin', 'user', resource: new MoonShineUserResource())->nullable(),
                 Image::make('Preview', 'preview')
                     ->disk('sessions'),
-                Text::make('Name', 'name'),
+                Text::make('Name', 'name')->unescape(),
                 Textarea::make('Description', 'description'),
             ]),
         ];
