@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Note;
 
 use MoonShine\Fields\Json;
+use MoonShine\Fields\Markdown;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Textarea;
+use MoonShine\Fields\TinyMce;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
@@ -37,7 +39,7 @@ class NoteResource extends ModelResource
                 ID::make()->sortable(),
                 BelongsTo::make('Session', 'session', resource: new SessionsResource())->nullable(),
                 Text::make('Title', 'title'),
-                Textarea::make('Content', 'content'),
+                TinyMce::make('Content', 'content')->hideOnIndex(),
                 Json::make('Type', 'type')->onlyValue(),
                 Text::make('Game Time', 'game_time')
                     ->mask('9999999.99.99.99.99')
