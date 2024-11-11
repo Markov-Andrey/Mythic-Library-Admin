@@ -11,4 +11,8 @@ class NoteController extends Controller
     {
         return NoteService::allNotes($session_id);
     }
+    public function note($id)
+    {
+        return NoteService::note($id);
+    }
 }

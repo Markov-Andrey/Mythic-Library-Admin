@@ -14,4 +14,11 @@ class NoteService
 
         return response()->json($items);
     }
+
+    public static function note($id)
+    {
+        $note = Note::find($id);
+
+        return response()->json($note);
+    }
 }

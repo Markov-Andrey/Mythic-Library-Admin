@@ -8,10 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Note;
 
 use MoonShine\Fields\Json;
-use MoonShine\Fields\Markdown;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
-use MoonShine\Fields\Textarea;
 use MoonShine\Fields\TinyMce;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
