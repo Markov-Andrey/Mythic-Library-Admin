@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,4 @@ Route::middleware('auth:sanctum')->get('/items/{id}/types', [ItemController::cla
 Route::middleware('auth:sanctum')->post('/abilities/{session_id}', [AbilityController::class, 'allAbilities']);
 Route::middleware('auth:sanctum')->post('/characters/{session_id}', [CharacterController::class, 'allCharacters']);
 Route::middleware('auth:sanctum')->get('/character/{id}', [CharacterController::class, 'character']);
+Route::middleware('auth:sanctum')->post('/notes/{session_id}', [NoteController::class, 'allNotes']);
