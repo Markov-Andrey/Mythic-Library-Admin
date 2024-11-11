@@ -15,6 +15,13 @@ class CharacterService
         if (!$item) return response()->json(['error' => 'Location not found'], 404);
         $item->avatar = !empty($item->avatar) ? asset("storage/avatars/{$item->avatar}") : null;
 
+        $item->inventoryWithItems->each(function ($item) {
+            $item->image = $item->full_image_path;
+        });
+        $item->abilitiesWithDetails->each(function ($item) {
+            $item->image = $item->full_image_path;
+        });
+
         return response()->json($item);
     }
     public static function allCharacters($session_id, $request): \Illuminate\Http\JsonResponse
