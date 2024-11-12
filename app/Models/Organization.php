@@ -13,7 +13,8 @@ class Organization extends Model
 
     protected $fillable = [
         'session_id',
-        'logo_url',
+        'logo',
+        'images',
         'name',
         'type',
         'description',
@@ -23,5 +24,18 @@ class Organization extends Model
 
     protected $casts = [
         'parameters' => 'array',
+        'images' => 'array',
     ];
+
+    public function getLogoUrlAttribute(): ?string
+    {
+        return $this->logo ? asset("storage/organization_logo/{$this->logo}") : null;
+    }
+    public function getImagesUrlsAttribute(): array
+    {
+        return array_map(
+            fn($image) => asset("storage/organization_images/{$image}"),
+            $this->images ?? []
+        );
+    }
 }

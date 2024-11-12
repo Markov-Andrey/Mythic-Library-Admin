@@ -11,6 +11,7 @@ use App\MoonShine\Resources\InventoryResource;
 use App\MoonShine\Resources\ItemResource;
 use App\MoonShine\Resources\LocationResource;
 use App\MoonShine\Resources\NoteResource;
+use App\MoonShine\Resources\OrganizationResource;
 use App\MoonShine\Resources\SessionsResource;
 use App\MoonShine\Resources\SessionUserResource;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
@@ -69,6 +70,10 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
                 MenuItem::make(
                     static fn() => 'Locations',
                     new LocationResource(),
+                ),
+                MenuItem::make(
+                    static fn() => 'Organisations',
+                    new OrganizationResource(),
                 ),
                 MenuItem::make(
                     static fn() => 'Items',

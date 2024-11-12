@@ -85,6 +85,18 @@ return [
             'url' => env('APP_URL') . '/storage/abilities',
             'visibility' => 'public',
         ],
+        'organization_logo' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/organization_logo'),
+            'url' => env('APP_URL') . '/storage/organization_logo',
+            'visibility' => 'public',
+        ],
+        'organization_images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/organization_images'),
+            'url' => env('APP_URL') . '/storage/organization_images',
+            'visibility' => 'public',
+        ],
     ],
 
     /*

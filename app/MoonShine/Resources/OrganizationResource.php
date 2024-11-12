@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Location;
+use App\Models\Organization;
 
 use MoonShine\Fields\Image;
 use MoonShine\Fields\Json;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
-use MoonShine\Fields\Textarea;
+use MoonShine\Fields\TinyMce;
 use MoonShine\Resources\ModelResource;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
@@ -20,15 +20,13 @@ use MoonShine\Components\MoonShineComponent;
 use Throwable;
 
 /**
- * @extends ModelResource<Location>
+ * @extends ModelResource<Organization>
  */
-class LocationResource extends ModelResource
+class OrganizationResource extends ModelResource
 {
-    protected string $model = Location::class;
+    protected string $model = Organization::class;
 
-    protected string $title = 'Locations';
-
-    public string $column = 'name';
+    protected string $title = 'Organizations';
 
     /**
      * @return list<MoonShineComponent|Field>
@@ -39,23 +37,25 @@ class LocationResource extends ModelResource
         return [
             Block::make([
                 ID::make()->sortable(),
-                Image::make('images')
-                    ->disk('locations')
-                    ->removable()
-                    ->multiple(),
                 BelongsTo::make('Session', 'session', resource: new SessionsResource())->nullable(),
-                BelongsTo::make('Parent', 'parent', resource: new SessionsResource())->nullable(),
+                Image::make('Logo', 'logo')
+                    ->disk('organization_logo'),
                 Text::make('Name', 'name'),
                 Text::make('Type', 'type'),
-                Textarea::make('Description', 'description'),
-                Json::make('Attributes', 'attributes')
+                Text::make('Status', 'status'),
+                TinyMce::make('Description', 'description')->hideOnIndex(),
+                Image::make('Images', 'images')
+                    ->disk('organization_images')
+                    ->removable()
+                    ->multiple(),
+                Json::make('Parameters', 'parameters')
                     ->keyValue(),
             ]),
         ];
     }
 
     /**
-     * @param Location $item
+     * @param Organization $item
      *
      * @return array<string, string[]|string>
      * @see https://laravel.com/docs/validation#available-validation-rules

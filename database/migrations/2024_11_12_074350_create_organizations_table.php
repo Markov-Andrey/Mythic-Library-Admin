@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('session_id');
-            $table->string('logo_url')->nullable();
+            $table->string('logo')->nullable();
+            $table->json('images')->nullable();
             $table->string('name');
             $table->string('type')->nullable();
             $table->text('description')->nullable();
