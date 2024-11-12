@@ -46,12 +46,17 @@ class CharactersResource extends ModelResource
                 Image::make('Avatar', 'avatar')
                     ->disk('avatars'),
                 Text::make('Name', 'name'),
-                Number::make('Health', 'health'),
-                Number::make('Max Health', 'max_health'),
+                Number::make('Health', 'health')
+                    ->hideOnIndex(),
+                Number::make('Max Health', 'max_health')
+                    ->hideOnIndex(),
                 Json::make('Characteristics', 'attributes')
-                    ->keyValue(),
-                Number::make('Experience', 'experience'),
-                Text::make('Info', 'info'),
+                    ->keyValue()
+                    ->hideOnIndex(),
+                Number::make('Experience', 'experience')
+                    ->hideOnIndex(),
+                Text::make('Info', 'info')
+                    ->hideOnIndex(),
                 Switcher::make('NPC', 'is_npc'),
                 HasMany::make('Abilities', 'abilities', resource: new CharacterAbilityResource())->hideOnAll()->showOnDetail(),
                 HasMany::make('Inventory', 'inventory', resource: new InventoryResource())->hideOnAll()->showOnDetail(),
