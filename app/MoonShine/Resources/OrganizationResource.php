@@ -43,13 +43,15 @@ class OrganizationResource extends ModelResource
                 Text::make('Name', 'name'),
                 Text::make('Type', 'type'),
                 Text::make('Status', 'status'),
-                TinyMce::make('Description', 'description')->hideOnIndex(),
+                TinyMce::make('Description', 'description')
+                    ->hideOnIndex(),
                 Image::make('Images', 'images')
                     ->disk('organization_images')
                     ->removable()
                     ->multiple(),
                 Json::make('Parameters', 'parameters')
-                    ->keyValue(),
+                    ->keyValue()
+                    ->hideOnIndex(),
             ]),
         ];
     }

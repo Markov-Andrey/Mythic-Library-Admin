@@ -43,9 +43,11 @@ class AbilityResource extends ModelResource
                     ->disk('abilities'),
                 Text::make('Name', 'name'),
                 Text::make('Type', 'type'),
-                Textarea::make('Description', 'description'),
+                Textarea::make('Description', 'description')
+                    ->hideOnIndex(),
                 Json::make('Parameters', 'parameters')
-                    ->keyValue(),
+                    ->keyValue()
+                    ->hideOnIndex(),
             ]),
         ];
     }

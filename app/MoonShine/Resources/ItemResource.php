@@ -42,14 +42,16 @@ class ItemResource extends ModelResource
                 ID::make()->sortable(),
                 BelongsTo::make('Session', 'session', resource: new SessionsResource())->nullable(),
                 Text::make('Name', 'name'),
-                Textarea::make('Description', 'description'),
+                Textarea::make('Description', 'description')
+                    ->hideOnIndex(),
                 Image::make('Image', 'image')
                     ->disk('items'),
                 Text::make('Type', 'type'),
                 Number::make('Weight', 'weight_per_unit')->step(0.01),
                 Number::make('Value', 'value')->step(0.01),
                 Json::make('Properties', 'properties')
-                    ->keyValue(),
+                    ->keyValue()
+                    ->hideOnIndex(),
                 Switcher::make('Hidden Properties', 'has_hidden_properties'),
             ]),
         ];

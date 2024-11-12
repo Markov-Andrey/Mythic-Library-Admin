@@ -47,9 +47,11 @@ class LocationResource extends ModelResource
                 BelongsTo::make('Parent', 'parent', resource: new SessionsResource())->nullable(),
                 Text::make('Name', 'name'),
                 Text::make('Type', 'type'),
-                Textarea::make('Description', 'description'),
+                Textarea::make('Description', 'description')
+                    ->hideOnIndex(),
                 Json::make('Attributes', 'attributes')
-                    ->keyValue(),
+                    ->keyValue()
+                    ->hideOnIndex(),
             ]),
         ];
     }

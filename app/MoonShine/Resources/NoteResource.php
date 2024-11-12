@@ -16,6 +16,7 @@ use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
 use MoonShine\Fields\Field;
 use MoonShine\Components\MoonShineComponent;
+use Throwable;
 
 /**
  * @extends ModelResource<Note>
@@ -28,7 +29,7 @@ class NoteResource extends ModelResource
 
     /**
      * @return list<MoonShineComponent|Field>
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function fields(): array
     {
