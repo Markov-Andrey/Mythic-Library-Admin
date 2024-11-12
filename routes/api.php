@@ -6,6 +6,7 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +41,6 @@ Route::middleware('auth:sanctum')->get('/character/{id}', [CharacterController::
 
 Route::middleware('auth:sanctum')->post('/notes/{session_id}', [NoteController::class, 'allNotes']);
 Route::middleware('auth:sanctum')->get('/note/{id}', [NoteController::class, 'note']);
+
+Route::middleware('auth:sanctum')->post('/organizations/{session_id}', [OrganizationController::class, 'allOrganizations']);
+Route::middleware('auth:sanctum')->get('/organization/{id}', [OrganizationController::class, 'organization']);
