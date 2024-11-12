@@ -27,23 +27,30 @@ class Item extends Model
         'properties' => 'array',
     ];
 
-    public function getWeightPerUnitAttribute($value)
+    protected $appends = ['image_url'];
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image ? asset("storage/items/{$this->image}") : null;
+    }
+
+    public function getWeightPerUnitAttribute($value): float|int
     {
         return $value / 100;
     }
-    public function setWeightPerUnitAttribute($value)
+    public function setWeightPerUnitAttribute($value): void
     {
         $this->attributes['weight_per_unit'] = $value * 100;
     }
-    public function getValueAttribute($value)
+    public function getValueAttribute($value): float|int
     {
         return $value / 100;
     }
-    public function setValueAttribute($value)
+    public function setValueAttribute($value): void
     {
         $this->attributes['value'] = $value * 100;
     }
-    public function getFullImagePathAttribute()
+    public function getFullImagePathAttribute(): ?string
     {
         return $this->image ? asset("storage/items/{$this->image}") : null;
     }
