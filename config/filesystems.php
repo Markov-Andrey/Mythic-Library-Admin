@@ -55,47 +55,18 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
-        'avatars' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/avatars'),
-            'url' => env('APP_URL') . '/storage/avatars',
-            'visibility' => 'public',
-        ],
-        'sessions' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/sessions'),
-            'url' => env('APP_URL') . '/storage/sessions',
-            'visibility' => 'public',
-        ],
-        'items' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/items'),
-            'url' => env('APP_URL') . '/storage/items',
-            'visibility' => 'public',
-        ],
-        'locations' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/locations'),
-            'url' => env('APP_URL') . '/storage/locations',
-            'visibility' => 'public',
-        ],
-        'abilities' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/abilities'),
-            'url' => env('APP_URL') . '/storage/abilities',
-            'visibility' => 'public',
-        ],
-        'organization_logo' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/organization_logo'),
-            'url' => env('APP_URL') . '/storage/organization_logo',
-            'visibility' => 'public',
-        ],
-        'organization_images' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/organization_images'),
-            'url' => env('APP_URL') . '/storage/organization_images',
-            'visibility' => 'public',
+
+        /**
+         * Проброска всех типовых кастомных директорий в AppServiceProvider
+         */
+        'custom_directories' => [
+            'avatars',
+            'sessions',
+            'items',
+            'locations',
+            'abilities',
+            'organization_logo',
+            'organization_images',
         ],
     ],
 
