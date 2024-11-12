@@ -27,6 +27,11 @@ class Organization extends Model
         'images' => 'array',
     ];
 
+    protected $appends = [
+        'logo_url',
+        'images_urls',
+    ];
+
     public function getLogoUrlAttribute(): ?string
     {
         return $this->logo ? asset("storage/organization_logo/{$this->logo}") : null;
