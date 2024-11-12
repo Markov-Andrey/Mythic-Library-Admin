@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\BelongsToSession;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    use HasFactory;
+    use BelongsToSession;
 
     protected $table = 'locations';
 
@@ -33,10 +33,6 @@ class Location extends Model
     public function children()
     {
         return $this->hasMany(Location::class, 'parent_id');
-    }
-    public function session()
-    {
-        return $this->belongsTo(Session::class, 'session_id');
     }
     public function getPreviewUrlAttribute(): string
     {

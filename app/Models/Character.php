@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\BelongsToSession;
 use Illuminate\Database\Eloquent\Model;
 
 class Character extends Model
 {
-    use HasFactory;
+    use BelongsToSession;
 
     protected $table = 'characters';
     protected $fillable = [
@@ -31,11 +31,6 @@ class Character extends Model
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function session(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Session::class, 'session_id');
     }
     public function inventory(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

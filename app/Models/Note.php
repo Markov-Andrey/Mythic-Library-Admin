@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\BelongsToSession;
 use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    use HasFactory;
+    use BelongsToSession;
 
     protected $table = 'notes';
 
@@ -26,11 +26,6 @@ class Note extends Model
         'type' => 'array',
         'access_users' => 'array',
     ];
-
-    public function session()
-    {
-        return $this->belongsTo(Session::class);
-    }
 
     /**
      * Аксессор для получения `game_time_data` как JSON-объекта.

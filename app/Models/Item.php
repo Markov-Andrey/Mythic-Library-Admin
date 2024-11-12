@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\BelongsToSession;
 use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    use HasFactory;
+    use BelongsToSession;
 
     protected $table = 'items';
 
@@ -42,10 +42,6 @@ class Item extends Model
     public function setValueAttribute($value)
     {
         $this->attributes['value'] = $value * 100;
-    }
-    public function session()
-    {
-        return $this->belongsTo(Session::class, 'session_id');
     }
     public function getFullImagePathAttribute()
     {
